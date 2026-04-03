@@ -157,6 +157,73 @@
         .cursor-ring {
           display: none;
         }
+        section {
+          padding: 4rem 0;
+          min-height: auto;
+        }
+        .container {
+          padding: 0 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          font-size: 14px;
+        }
+        .container {
+          padding: 0 1.5rem;
+        }
+        section {
+          padding: 4rem 0;
+          scroll-snap-align: none;
+        }
+        html {
+          scroll-snap-type: none !important;
+        }
+        
+        /* Hero Slider Mobile Scaling */
+        .hero-slider {
+          height: 380px;
+        }
+        .slider-item {
+          width: 85vw;
+          height: 320px;
+        }
+        .slider-item.prev {
+          transform: translateX(-30%) scale(0.8) translateZ(-50px);
+        }
+        .slider-item.next {
+          transform: translateX(30%) scale(0.8) translateZ(-50px);
+        }
+
+        /* Quote Section Mobile Refinement */
+        .quote-card {
+           padding: 3rem 1.5rem !important;
+           border-radius: 24px !important;
+        }
+        .quote-text {
+          font-size: 1.8rem !important;
+        }
+
+        /* Technology Section Tabs Mobile */
+        .tech-tabs {
+          grid-template-columns: 1fr !important;
+          gap: 1rem !important;
+        }
+        .tech-tab {
+          padding: 1.2rem !important;
+          text-align: left !important;
+        }
+        .tech-tab-header {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .tech-tab-icon {
+          margin: 0 !important;
+          width: 36px !important;
+          height: 36px !important;
+        }
       }
 
       /* Layout Utilities */
@@ -295,29 +362,26 @@
       }
       .reveal-delay-4 {
         transition-delay: 0.4s;
-      }
-
-      /* ==========================================================================
-           1. NAVBAR (Sleek & Seamless)
+      }      /* ==========================================================================
+           1. NAVIGATION (Responsive & Premium)
            ========================================================================== */
       nav {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 100;
-        padding: 1.2rem 0;
-        background: transparent;
-        border-bottom: 1px solid transparent;
+        z-index: 1000;
+        padding: 1.5rem 0;
         transition: var(--transition-smooth);
+        background: transparent;
       }
       nav.scrolled {
-        background: rgba(250, 247, 242, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
-        padding: 0.8rem 0;
-        border-bottom: 1px solid rgba(28, 56, 41, 0.03);
+        background: rgba(250, 247, 242, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 1rem 0;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       }
       .nav-container {
         display: flex;
@@ -331,57 +395,86 @@
       .logo {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         font-family: var(--font-serif);
         font-size: 1.5rem;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--forest);
         text-decoration: none;
-        font-weight: 600;
+        font-weight: 700;
       }
-      .logo-mark {
-        width: 24px;
-        height: 24px;
-        color: var(--forest);
-      }
-
       .nav-links {
         display: flex;
-        gap: 2.5rem;
+        gap: 3rem;
         align-items: center;
       }
       .nav-links a {
         text-decoration: none;
         color: var(--forest);
         font-size: 0.85rem;
-        position: relative;
-        padding-bottom: 2px;
-        font-weight: 400;
+        font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        opacity: 0.8;
+        transition: var(--transition-fast);
       }
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: var(--gold);
-        transition: width 0.3s ease;
+      .nav-links a:hover {
+        opacity: 1;
+        color: var(--gold);
       }
-      .nav-links a:hover::after {
-        width: 100%;
+      .nav-cta {
+        background: var(--forest);
+        color: var(--white) !important;
+        padding: 0.6rem 1.4rem;
+        border-radius: 100px;
+        opacity: 1 !important;
       }
 
-      .mobile-menu-btn {
+      .burger-menu {
         display: none;
-        background: transparent;
+        background: none;
         border: none;
         color: var(--forest);
-        cursor: none;
-        z-index: 101;
+        cursor: pointer;
+        z-index: 1100;
+      }
+
+      /* Mobile Nav Overlay (Hidden by default) */
+      .mobile-nav {
+        position: fixed;
+        inset: 0;
+        background: var(--white);
+        z-index: 1050;
+        padding: 8rem 2rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        transform: translateY(-100%);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        text-align: center;
+      }
+      .mobile-nav.active {
+        transform: translateY(0);
+      }
+      .mobile-nav a {
+        font-family: var(--font-serif);
+        font-size: 2.5rem;
+        color: var(--forest);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .burger-menu {
+          display: block;
+        }
+        .nav-container {
+          padding: 0 1.5rem;
+        }
       }
 
       /* ==========================================================================
@@ -1640,53 +1733,13 @@
       @media (max-width: 768px) {
         section {
           padding: 4.5rem 0;
-        } /* Tighter mobile sections */
+        }
         .container {
           padding: 0 1.5rem;
         }
-
         nav {
-          padding: 1rem 1.5rem;
+          padding: 1rem 0;
         }
-        nav.scrolled {
-          padding: 0.8rem 1.5rem;
-        }
-
-        /* Mobile Menu Hamburger Logic */
-        .nav-links {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 100%;
-          height: 100vh;
-          background: rgba(250, 247, 242, 0.98);
-          backdrop-filter: blur(15px);
-          -webkit-backdrop-filter: blur(15px);
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          gap: 2rem;
-          z-index: 100;
-        }
-        .nav-links.active {
-          right: 0;
-        }
-        .nav-links a {
-          font-size: 1.2rem;
-          font-weight: 500;
-        }
-        .nav-btn {
-          display: none;
-        }
-        .mobile-menu-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 101;
-          cursor: pointer;
-        }
-
         .problem-grid,
         .tim-grid,
         .value-grid {
@@ -1701,7 +1754,6 @@
         .solution-card {
           padding: 2.5rem 1.5rem;
         }
-
         .hero-title {
           font-size: clamp(2.5rem, 8vw, 3.5rem);
         }
@@ -1742,63 +1794,36 @@
     <div class="cursor-dot"></div>
     <div class="cursor-ring"></div>
 
-    <!-- 1. NAVBAR (Sleek) -->
-    <nav id="navbar" class="interactive">
+    <!-- 1. NAVIGATION -->
+    <nav id="main-nav">
       <div class="container nav-container">
-        <a href="#beranda" class="logo interactive">
-          <svg
-            class="logo-mark"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6 10v6a10 10 0 0 0 20 0v-6"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-            />
-            <path
-              d="M16 4v14M11 9l5-5 5 5"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+        <a href="#" class="logo">
+          <i data-lucide="leaf" width="28" height="28"></i>
           UMBARA
         </a>
-
-        <div class="nav-links" id="nav-links">
-          <a href="#cerita" class="interactive mobile-link">Cerita</a>
-          <a href="#solusi" class="interactive mobile-link">Solusi</a>
-          <a href="#produk" class="interactive mobile-link">Produk</a>
-          <a href="#teknologi" class="interactive mobile-link">Teknologi</a>
-          <a href="#visi" class="interactive mobile-link">Visi</a>
-          <!-- Mobile only button inside menu -->
-          <a
-            href="#produk"
-            class="btn btn-primary interactive mobile-link"
-            style="display: none"
-            >Coba Gendhis</a
-          >
+        <div class="nav-links">
+          <a href="#solusi" class="interactive">Solusi</a>
+          <a href="#teknologi" class="interactive">Teknologi</a>
+          <a href="#cerita" class="interactive">Cerita</a>
+          <a href="#tim" class="interactive">Tim</a>
+          <a href="#" class="nav-cta interactive">Hubungi Kami</a>
         </div>
-
-        <div style="display: flex; align-items: center; gap: 1rem">
-          <a href="#produk" class="btn btn-primary nav-btn interactive"
-            >Coba Gendhis
-            <i data-lucide="arrow-up-right" width="16" height="16"></i
-          ></a>
-          <button
-            class="mobile-menu-btn interactive"
-            id="mobile-menu-btn"
-            aria-label="Toggle Menu"
-          >
-            <i data-lucide="menu" width="24" height="24" id="menu-icon"></i>
-          </button>
-        </div>
+        <button class="burger-menu interactive" onclick="toggleMobileNav()">
+          <i data-lucide="menu" id="menu-icon" width="28" height="28"></i>
+        </button>
       </div>
     </nav>
+
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#solusi" onclick="toggleMobileNav()">Solusi</a>
+      <a href="#teknologi" onclick="toggleMobileNav()">Teknologi</a>
+      <a href="#cerita" onclick="toggleMobileNav()">Cerita Kami</a>
+      <a href="#tim" onclick="toggleMobileNav()">Tim Kami</a>
+      <a href="#" class="btn btn-gold" style="margin-top: 2rem"
+        >Hubungi Kami</a
+      >
+    </div>
 
     <!-- 2. HERO SECTION -->
     <section id="beranda">
@@ -2753,45 +2778,34 @@
         });
       }
 
-      // 3. Navbar & Mobile Menu Logic
-      const navbar = document.getElementById("navbar");
-      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-      const navLinks = document.getElementById("nav-links");
-      const menuIcon = document.getElementById("menu-icon");
-      const mobileLinks = document.querySelectorAll(".mobile-link");
-
-      let menuOpen = false;
+      // 3. Mobile Nav & Scroll Logic
+      const nav = document.getElementById("main-nav");
 
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 40) navbar.classList.add("scrolled");
-        else navbar.classList.remove("scrolled");
+        if (window.scrollY > 40) {
+          nav.classList.add("scrolled");
+        } else {
+          nav.classList.remove("scrolled");
+        }
       });
 
-      mobileMenuBtn.addEventListener("click", () => {
-        menuOpen = !menuOpen;
-        if (menuOpen) {
-          navLinks.classList.add("active");
+      function toggleMobileNav() {
+        const mobileNav = document.getElementById("mobile-nav");
+        const menuIcon = document.getElementById("menu-icon");
+        const isActive = mobileNav.classList.toggle("active");
+
+        if (isActive) {
           menuIcon.setAttribute("data-lucide", "x");
-          document.body.style.overflow = "hidden"; // prevent scrolling
+          document.body.style.overflow = "hidden";
         } else {
-          navLinks.classList.remove("active");
           menuIcon.setAttribute("data-lucide", "menu");
           document.body.style.overflow = "auto";
         }
-        lucide.createIcons(); // re-render icon
-      });
+        lucide.createIcons();
+      }
 
-      mobileLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          if (window.innerWidth <= 768) {
-            menuOpen = false;
-            navLinks.classList.remove("active");
-            menuIcon.setAttribute("data-lucide", "menu");
-            document.body.style.overflow = "auto";
-            lucide.createIcons();
-          }
-        });
-      });
+      // Initialize Icons
+      lucide.createIcons();
 
       // 4. Technology Slider Logic
       function switchTech(index) {
