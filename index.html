@@ -1,535 +1,1741 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UMBARA — Platform teknologi agrikultur untuk keputusan yang lebih akurat.">
+<!doctype html>
+<html
+  lang="id"
+  style="
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 80px;
+    scroll-behavior: smooth;
+  "
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="UMBARA — Platform teknologi agrikultur untuk keputusan yang lebih akurat."
+    />
     <title>UMBARA — Ambil keputusan yang tepat, tanpa menebak.</title>
-    
+
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* ==========================================================================
+      /* ==========================================================================
            BRAND IDENTITY & DESIGN TOKENS
            ========================================================================== */
-        :root {
-            /* Color Palette */
-            --forest:       #1C3829;
-            --forest-deep:  #122518;
-            --sage:         #4A7C59;
-            --sage-light:   #7BAE8C;
-            --sage-pale:    #eef4f0;
-            --cream:        #FAF7F2;
-            --cream-dark:   #F2EDE4;
-            --beige:        #E8DFD0;
-            --gold:         #C4A96A;
-            --gold-light:   #D9C28E;
-            --charcoal:     #1E1E1E;
-            --charcoal-soft:#4a5550;
-            --muted:        #7A7A7A;
-            --white:        #FFFFFF;
-            
-            /* Typography */
-            --font-serif: 'Cormorant Garamond', serif;
-            --font-sans: 'Instrument Sans', sans-serif;
-            
-            /* Layout & Spacing */
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --radius-full: 9999px;
-            --shadow-soft: 0 10px 30px rgba(28, 56, 41, 0.04);
-            --shadow-hover: 0 20px 40px rgba(28, 56, 41, 0.08);
-            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            --transition-fast: all 0.3s ease;
-        }
+      :root {
+        /* Color Palette */
+        --forest: #1c3829;
+        --forest-deep: #122518;
+        --sage: #4a7c59;
+        --sage-light: #7bae8c;
+        --sage-pale: #eef4f0;
+        --cream: #faf7f2;
+        --cream-dark: #f2ede4;
+        --beige: #e8dfd0;
+        --gold: #c4a96a;
+        --gold-light: #d9c28e;
+        --charcoal: #1e1e1e;
+        --charcoal-soft: #4a5550;
+        --muted: #7a7a7a;
+        --white: #ffffff;
 
-        /* ==========================================================================
+        /* Typography */
+        --font-serif: "Cormorant Garamond", serif;
+        --font-sans: "Instrument Sans", sans-serif;
+
+        /* Layout & Spacing */
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --radius-full: 9999px;
+        --shadow-soft: 0 10px 30px rgba(28, 56, 41, 0.04);
+        --shadow-hover: 0 20px 40px rgba(28, 56, 41, 0.08);
+        --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        --transition-fast: all 0.3s ease;
+      }
+
+      /* ==========================================================================
            GLOBAL STYLES & RESET
            ========================================================================== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        font-weight: 300;
+        color: var(--charcoal);
+        background-color: var(--cream);
+        line-height: 1.8;
+        overflow-x: hidden;
+        cursor: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      .serif {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        line-height: 1.1;
+      }
+      p {
+        color: var(--charcoal-soft);
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--cream-dark);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--sage);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--forest);
+      }
+
+      /* Custom Cursor */
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        background-color: var(--forest);
+        transition: transform 0.2s ease;
+      }
+      .cursor-ring {
+        width: 30px;
+        height: 30px;
+        border: 1px solid var(--sage-light);
+        transition:
+          width 0.3s,
+          height 0.3s,
+          border-color 0.3s;
+      }
+
+      body.cursor-hover .cursor-dot {
+        transform: translate(-50%, -50%) scale(1.5);
+      }
+      body.cursor-hover .cursor-ring {
+        width: 46px;
+        height: 46px;
+        border-color: var(--gold);
+        background-color: rgba(196, 169, 106, 0.1);
+      }
+
+      @media (max-width: 1024px) {
         body {
-            font-family: var(--font-sans);
-            font-weight: 300;
-            color: var(--charcoal);
-            background-color: var(--cream);
-            line-height: 1.8;
-            overflow-x: hidden;
-            cursor: none;
+          cursor: auto;
         }
-
-        h1, h2, h3, h4, h5, .serif { font-family: var(--font-serif); font-weight: 500; line-height: 1.1; }
-        p { color: var(--charcoal-soft); }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--cream-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--forest); }
-
-        /* Custom Cursor */
-        .cursor-dot, .cursor-ring {
-            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-            border-radius: 50%; pointer-events: none; z-index: 9999;
+        .cursor-dot,
+        .cursor-ring {
+          display: none;
         }
-        .cursor-dot { width: 6px; height: 6px; background-color: var(--forest); transition: transform 0.2s ease; }
-        .cursor-ring { width: 30px; height: 30px; border: 1px solid var(--sage-light); transition: width 0.3s, height 0.3s, border-color 0.3s; }
-        
-        body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(1.5); }
-        body.cursor-hover .cursor-ring { width: 46px; height: 46px; border-color: var(--gold); background-color: rgba(196, 169, 106, 0.1); }
+      }
 
-        @media (max-width: 1024px) {
-            body { cursor: auto; }
-            .cursor-dot, .cursor-ring { display: none; }
-        }
+      /* Layout Utilities */
+      section {
+        padding: 5rem 0;
+        position: relative;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        width: 100%;
+      }
 
-        /* Layout Utilities */
-        section { padding: 8rem 0; position: relative; }
-        .container { max-width: 1240px; margin: 0 auto; padding: 0 4rem; width: 100%; }
-        
-        .section-label {
-            display: inline-flex; align-items: center; font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold);
-            font-weight: 600; margin-bottom: 1.2rem;
-        }
-        .section-label::before {
-            content: ''; display: inline-block; width: 24px; height: 1px;
-            background-color: var(--gold); margin-right: 12px;
-        }
-        .title-margin { margin-bottom: 4rem; }
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--gold);
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+      }
+      .section-label::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 1px;
+        background-color: var(--gold);
+        margin-right: 12px;
+      }
+      .title-margin {
+        margin-bottom: 4rem;
+      }
 
-        /* Sleek Buttons (Less chunky, more elegant) */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 0.75rem 1.8rem; border-radius: var(--radius-full); font-size: 0.95rem;
-            font-weight: 500; text-decoration: none; transition: var(--transition-fast);
-            border: 1px solid transparent; cursor: none; outline: none; letter-spacing: 0.02em;
-        }
-        .btn-primary { background-color: var(--forest); color: var(--white); box-shadow: 0 4px 15px rgba(28,56,41,0.08); }
-        .btn-primary:hover { background-color: var(--sage); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(28,56,41,0.15); }
-        .btn-gold { background-color: var(--gold); color: var(--forest); box-shadow: 0 4px 15px rgba(196,169,106,0.15); }
-        .btn-gold:hover { background-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(196,169,106,0.25); }
-        .btn-ghost { border-color: rgba(255,255,255,0.3); color: var(--white); background: transparent; backdrop-filter: blur(4px); }
-        .btn-ghost:hover { background-color: var(--white); color: var(--forest); border-color: var(--white); }
+      /* Sleek Buttons (Less chunky, more elegant) */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0.75rem 1.8rem;
+        border-radius: var(--radius-full);
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition-fast);
+        border: 1px solid transparent;
+        cursor: none;
+        outline: none;
+        letter-spacing: 0.02em;
+      }
+      .btn-primary {
+        background-color: var(--forest);
+        color: var(--white);
+        box-shadow: 0 4px 15px rgba(28, 56, 41, 0.08);
+      }
+      .btn-primary:hover {
+        background-color: var(--sage);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(28, 56, 41, 0.15);
+      }
+      .btn-gold {
+        background-color: var(--gold);
+        color: var(--forest);
+        box-shadow: 0 4px 15px rgba(196, 169, 106, 0.15);
+      }
+      .btn-gold:hover {
+        background-color: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(196, 169, 106, 0.25);
+      }
+      .btn-ghost {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: var(--white);
+        background: transparent;
+        backdrop-filter: blur(4px);
+      }
+      .btn-ghost:hover {
+        background-color: var(--white);
+        color: var(--forest);
+        border-color: var(--white);
+      }
 
-        /* Icon Wrapper */
-        .icon-wrapper {
-            width: 48px; height: 48px; border-radius: var(--radius-md);
-            display: flex; align-items: center; justify-content: center;
-            background: var(--sage-pale); color: var(--forest);
-            margin-bottom: 1.5rem; transition: var(--transition-smooth);
-        }
+      /* Icon Wrapper */
+      .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--sage-pale);
+        color: var(--forest);
+        margin-bottom: 1.5rem;
+        transition: var(--transition-smooth);
+      }
 
-        /* Grain Texture */
-        .grain-overlay {
-            position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.35;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+      /* Grain Texture */
+      .grain-overlay {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.35;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
 
-        /* Animations */
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
+      /* Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
 
-        /* ==========================================================================
+      /* ==========================================================================
            1. NAVBAR (Sleek & Seamless)
            ========================================================================== */
-        nav {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-            padding: 1.2rem 0; background: transparent; border-bottom: 1px solid transparent;
-            transition: var(--transition-smooth);
-        }
-        nav.scrolled {
-            background: rgba(250, 247, 242, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.02); padding: 0.8rem 0; border-bottom: 1px solid rgba(28,56,41,0.03);
-        }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1240px; margin: 0 auto; padding: 0 4rem; width: 100%; }
-        .logo {
-            display: flex; align-items: center; gap: 8px;
-            font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: 0.15em; text-transform: uppercase;
-            color: var(--forest); text-decoration: none; font-weight: 600; 
-        }
-        .logo-mark { width: 24px; height: 24px; color: var(--forest); }
-        
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav-links a {
-            text-decoration: none; color: var(--forest); font-size: 0.85rem;
-            position: relative; padding-bottom: 2px; font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--gold); transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after { width: 100%; }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        padding: 1.2rem 0;
+        background: transparent;
+        border-bottom: 1px solid transparent;
+        transition: var(--transition-smooth);
+      }
+      nav.scrolled {
+        background: rgba(250, 247, 242, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(28, 56, 41, 0.03);
+      }
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 4rem;
+        width: 100%;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-serif);
+        font-size: 1.5rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--forest);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .logo-mark {
+        width: 24px;
+        height: 24px;
+        color: var(--forest);
+      }
 
-        .mobile-menu-btn { display: none; background: transparent; border: none; color: var(--forest); cursor: none; z-index: 101; }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--forest);
+        font-size: 0.85rem;
+        position: relative;
+        padding-bottom: 2px;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: width 0.3s ease;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
 
-        /* ==========================================================================
+      .mobile-menu-btn {
+        display: none;
+        background: transparent;
+        border: none;
+        color: var(--forest);
+        cursor: none;
+        z-index: 101;
+      }
+
+      /* ==========================================================================
            2. HERO SECTION
            ========================================================================== */
-        #beranda {
-            min-height: 100vh; position: relative; display: flex; align-items: center;
-            padding-top: 80px; overflow: hidden; background: var(--forest);
-        }
-        .hero-video {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
-        }
-        .hero-overlay {
-            position: absolute; inset: 0; z-index: 2;
-            background: linear-gradient(90deg, rgba(18,37,24,0.9) 0%, rgba(18,37,24,0.6) 50%, rgba(18,37,24,0.2) 100%);
-        }
-        
-        .hero-grid {
-            position: relative; z-index: 10; display: grid; grid-template-columns: 1fr 1fr;
-            align-items: center; gap: 4rem; width: 100%;
-        }
+      #beranda {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-top: 80px;
+        overflow: hidden;
+        background: var(--white);
+      }
+      .hero-video {
+        display: none;
+      }
+      .hero-overlay {
+        display: none;
+      }
 
-        .hero-content { color: var(--white); }
-        .hero-title {
-            font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.05; margin: 1rem 0 1.5rem 0;
-            animation: fadeUp 0.8s ease 0.1s both; letter-spacing: -0.01em;
-        }
-        .hero-subtitle {
-            font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 2.5rem;
-            max-width: 550px; line-height: 1.7; animation: fadeUp 0.8s ease 0.2s both;
-        }
-        .hero-actions { display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem; animation: fadeUp 0.8s ease 0.3s both; }
-        
-        /* Floating Cards (Sleeker) */
-        .hero-showcase {
-            position: relative; height: 450px; width: 100%;
-            display: flex; justify-content: center; align-items: center;
-            animation: fadeUp 1s ease 0.5s both;
-        }
-        .f-card {
-            position: absolute; background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            padding: 1rem 1.2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-glass);
-            color: var(--white); border: 1px solid rgba(255,255,255,0.15); pointer-events: auto;
-            width: max-content; transition: var(--transition-fast);
-        }
-        .f-card:hover { transform: scale(1.02) !important; border-color: rgba(255,255,255,0.4); z-index: 10; }
-        
-        .f-card-1 { top: 15%; right: 10%; animation: float 6s ease-in-out infinite; }
-        .f-card-2 { bottom: 20%; left: 0; animation: float 7s ease-in-out infinite 1s; }
-        .f-card-3 { 
-            top: 45%; right: -5%; animation: float 5.5s ease-in-out infinite 0.5s; 
-            background: rgba(18, 37, 24, 0.6); border-color: rgba(196, 169, 106, 0.5);
-        }
-        
-        .f-label { font-size: 0.7rem; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 4px; display: block; letter-spacing: 0.05em; font-weight: 500;}
-        .f-value { font-weight: 500; font-family: var(--font-sans); display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-        .f-dot { width: 6px; height: 6px; background: #25D366; border-radius: 50%; box-shadow: 0 0 8px rgba(37,211,102,0.5); }
-        .f-progress { height: 4px; background: rgba(255,255,255,0.1); width: 120px; border-radius: 2px; margin-top: 8px; overflow: hidden; }
-        .f-progress-bar { height: 100%; background: var(--sage-light); width: 78%; }
+      .hero-grid {
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 8rem;
+        width: 100%;
+      }
 
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+      .hero-content {
+        color: var(--forest);
+      }
+      .hero-title {
+        font-size: clamp(2.8rem, 5vw, 4.5rem);
+        line-height: 1.05;
+        margin: 1rem 0 1.5rem 0;
+        animation: fadeUp 0.8s ease 0.1s both;
+        letter-spacing: -0.01em;
+      }
+      .hero-subtitle {
+        font-size: 1.05rem;
+        color: var(--charcoal-soft);
+        margin-bottom: 2.5rem;
+        max-width: 550px;
+        line-height: 1.7;
+        animation: fadeUp 0.8s ease 0.2s both;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 2rem;
+        animation: fadeUp 0.8s ease 0.3s both;
+      }
 
-        /* ==========================================================================
+      /* Video Slider */
+      .hero-slider {
+        position: relative;
+        width: 100%;
+        height: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+        animation: fadeUp 1s ease 0.5s both;
+      }
+      .slider-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .slider-item {
+        position: absolute;
+        width: 380px;
+        height: 450px;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        transition: var(--transition-smooth);
+        opacity: 0;
+        transform: scale(0.8) translateZ(-100px);
+        pointer-events: none;
+        background: var(--white);
+        border: 1px solid var(--beige);
+      }
+      .slider-item.prev {
+        opacity: 0.5;
+        transform: translateX(-40%) scale(0.85) translateZ(-50px);
+        z-index: 1;
+        pointer-events: auto;
+      }
+      .slider-item.next {
+        opacity: 0.5;
+        transform: translateX(40%) scale(0.85) translateZ(-50px);
+        z-index: 1;
+        pointer-events: auto;
+      }
+      .slider-item.active {
+        opacity: 1;
+        transform: translateX(0) scale(1) translateZ(0);
+        z-index: 10;
+        pointer-events: auto;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+      }
+      .slider-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .slider-item:hover img {
+        transform: scale(1.05);
+      }
+      .video-play-hint {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.6),
+          transparent 50%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2rem;
+        color: var(--white);
+        pointer-events: none;
+      }
+      .play-btn-round {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition-fast);
+      }
+      .slider-item:hover .play-btn-round {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--forest);
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+      .farmer-info h4 {
+        font-family: var(--font-serif);
+        font-size: 1.4rem;
+        margin-bottom: 4px;
+      }
+      .farmer-info span {
+        font-size: 0.8rem;
+        opacity: 0.8;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .slider-nav {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        animation: fadeUp 0.8s ease 0.6s both;
+      }
+      .nav-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--beige);
+        cursor: pointer;
+        transition: var(--transition-fast);
+      }
+      .nav-dot.active {
+        width: 24px;
+        background: var(--gold);
+        border-radius: 4px;
+      }
+
+      .f-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 4px;
+        display: block;
+        letter-spacing: 0.05em;
+        font-weight: 500;
+      }
+      .f-value {
+        font-weight: 500;
+        font-family: var(--font-sans);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+      }
+      .f-dot {
+        width: 6px;
+        height: 6px;
+        background: #25d366;
+        border-radius: 50%;
+        box-shadow: 0 0 8px rgba(37, 211, 102, 0.5);
+      }
+      .f-progress {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        width: 120px;
+        border-radius: 2px;
+        margin-top: 8px;
+        overflow: hidden;
+      }
+      .f-progress-bar {
+        height: 100%;
+        background: var(--sage-light);
+        width: 78%;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      /* ==========================================================================
            3. PROBLEM SECTION
            ========================================================================== */
-        #masalah { background: var(--white); }
-        .problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .problem-card {
-            padding: 2.5rem 1.8rem; border-radius: var(--radius-lg); background: var(--white);
-            border: 1px solid var(--beige); transition: var(--transition-smooth); position: relative;
-            display: flex; flex-direction: column;
-        }
-        .problem-card::before {
-            content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 2px;
-            background: var(--gold); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left;
-            border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg);
-        }
-        .problem-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: transparent; }
-        .problem-card:hover::before { transform: scaleX(1); }
-        .problem-card:hover .icon-wrapper { background: var(--forest); color: var(--white); }
+      #masalah {
+        background: var(--white);
+      }
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+      .problem-card {
+        padding: 2.5rem 1.8rem;
+        border-radius: var(--radius-lg);
+        background: var(--white);
+        border: 1px solid var(--beige);
+        transition: var(--transition-smooth);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .problem-card::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+        transform-origin: left;
+        border-top-left-radius: var(--radius-lg);
+        border-top-right-radius: var(--radius-lg);
+      }
+      .problem-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+        border-color: transparent;
+      }
+      .problem-card:hover::before {
+        transform: scaleX(1);
+      }
+      .problem-card:hover .icon-wrapper {
+        background: var(--forest);
+        color: var(--white);
+      }
 
-        .problem-num {
-            font-family: var(--font-serif); font-size: 3.5rem; color: var(--sage-pale);
-            position: absolute; top: 15px; right: 20px; line-height: 1; font-weight: 600;
-        }
-        .problem-card h3 { font-size: 1.2rem; color: var(--forest); margin-bottom: 0.8rem; font-weight: 600; z-index: 2; position: relative;}
-        .problem-card p { font-size: 0.9rem; position: relative; z-index: 2; flex-grow: 1; }
+      .problem-num {
+        font-family: var(--font-serif);
+        font-size: 3.5rem;
+        color: var(--sage);
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        line-height: 1;
+        font-weight: 600;
+      }
+      .problem-card h3 {
+        font-size: 1.2rem;
+        color: var(--forest);
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+        position: relative;
+      }
+      .problem-card p {
+        font-size: 0.9rem;
+        position: relative;
+        z-index: 2;
+        flex-grow: 1;
+      }
 
-        /* ==========================================================================
+      /* ==========================================================================
            4. QUOTE SECTION
            ========================================================================== */
-        .quote-section {
-            background: url('https://images.unsplash.com/photo-1595166297071-72f8ea3b9e4d?q=80&w=2000&auto=format&fit=crop') center/cover fixed;
-            text-align: center; padding: 10rem 2rem; position: relative; overflow: hidden;
+      .quote-section {
+        background: var(--cream);
+        text-align: center;
+        padding: 1.5rem;
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        scroll-snap-align: center;
+      }
+      .quote-card {
+        position: relative;
+        width: 100%;
+        max-width: 1700px;
+        height: 90vh;
+        min-height: 550px;
+        border-radius: 48px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 40px 80px rgba(18, 37, 24, 0.2);
+      }
+      .quote-video-container {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .quote-video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.1); /* Zoom in to eliminate edge bars */
+        transition: transform 0.5s ease;
+      }
+      .quote-glow {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4); /* Neutral Black at 40% */
+        z-index: 1;
+      }
+      .quote-text {
+        position: relative;
+        z-index: 2;
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 5vw, 3.8rem);
+        font-weight: 300;
+        color: var(--cream);
+        line-height: 1.3;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      }
+      /* Word Rotator Animation */
+      .word-rotator {
+        display: inline-block;
+        vertical-align: bottom;
+        height: 1.3em;
+        overflow: hidden;
+        position: relative;
+        min-width: 7.5ch;
+        text-align: left;
+        margin-left: 0.1em;
+        color: var(--gold);
+      }
+      .word-rotator-inner {
+        display: flex;
+        flex-direction: column;
+        animation: rotateWords 12s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+      }
+      .word-rotator-inner span {
+        display: block;
+        height: 1.3em;
+        line-height: 1.3em;
+        font-style: italic;
+        white-space: nowrap;
+      }
+      @keyframes rotateWords {
+        0%,
+        15% {
+          transform: translateY(0);
         }
-        .quote-glow { position: absolute; inset: 0; background: rgba(18, 37, 24, 0.88); z-index: 1; }
-        .quote-text {
-            position: relative; z-index: 2; font-family: var(--font-serif);
-            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--cream);
-            line-height: 1.3; max-width: 800px; margin: 0 auto; text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        20%,
+        35% {
+          transform: translateY(-1.3em);
         }
+        40%,
+        55% {
+          transform: translateY(-2.6em);
+        }
+        60%,
+        75% {
+          transform: translateY(-3.9em);
+        }
+        80%,
+        95% {
+          transform: translateY(-5.2em);
+        }
+        100% {
+          transform: translateY(-6.5em);
+        }
+      }
 
-        /* ==========================================================================
+      /* ==========================================================================
            5. SOLUTION SECTION
            ========================================================================== */
-        #solusi { background: var(--cream); }
-        .solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .solution-card {
-            background: var(--white); border: 1px solid var(--beige);
-            padding: 3rem 2.5rem; border-radius: var(--radius-lg); transition: var(--transition-smooth);
-            display: flex; flex-direction: column;
-        }
-        .solution-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--sage-light); }
-        .solution-card .icon-wrapper { background: var(--forest); color: var(--white); width: 50px; height: 50px; }
-        .solution-card h3 { font-size: 1.3rem; color: var(--forest); margin-bottom: 0.8rem; font-weight: 600; }
-        .solution-card p { font-size: 0.95rem; }
+      #solusi {
+        background: var(--cream);
+      }
+      .solution-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+      .solution-card {
+        background: var(--white);
+        border: 1px solid var(--beige);
+        padding: 3rem 2.5rem;
+        border-radius: var(--radius-lg);
+        transition: var(--transition-smooth);
+        display: flex;
+        flex-direction: column;
+      }
+      .solution-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--sage-light);
+      }
+      .solution-card .icon-wrapper {
+        background: var(--forest);
+        color: var(--white);
+        width: 50px;
+        height: 50px;
+      }
+      .solution-card h3 {
+        font-size: 1.3rem;
+        color: var(--forest);
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+      }
+      .solution-card p {
+        font-size: 0.95rem;
+      }
 
-        /* ==========================================================================
+      /* ==========================================================================
            6. TECHNOLOGY SECTION 
            ========================================================================== */
-        #teknologi { background: var(--white); }
-        .tech-slider-layout {
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center; margin-top: 2rem;
-        }
-        .tech-tabs { display: flex; flex-direction: column; gap: 1rem; }
-        .tech-tab {
-            padding: 1.8rem; border-radius: var(--radius-md); border: 1px solid transparent;
-            cursor: none; transition: var(--transition-smooth); text-align: left;
-            background: var(--cream-dark); opacity: 0.5; position: relative; overflow: hidden;
-        }
-        .tech-tab.active { background: var(--white); opacity: 1; border-color: var(--beige); box-shadow: var(--shadow-soft); }
-        .tech-tab::before {
-            content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 100%;
-            background: var(--gold); transform: scaleY(0); transition: transform 0.4s ease; transform-origin: top;
-        }
-        .tech-tab.active::before { transform: scaleY(1); }
-        
-        .tech-tab-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
-        .tech-tab-icon {
-            width: 36px; height: 36px; border-radius: 50%; background: var(--forest); color: var(--white);
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: var(--transition-fast);
-        }
-        .tech-tab.active .tech-tab-icon { background: var(--gold); color: var(--forest); }
-        .tech-tab h3 { font-size: 1.2rem; color: var(--forest); font-weight: 600; }
-        .tech-tab-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin 0.4s ease; opacity: 0; }
-        .tech-tab.active .tech-tab-content { max-height: 150px; margin-top: 0.8rem; opacity: 1; transition-delay: 0.1s;}
-        .tech-tab-content p { font-size: 0.95rem; }
-        
-        .tech-visuals {
-            position: relative; height: 500px; border-radius: var(--radius-lg); overflow: hidden;
-            box-shadow: var(--shadow-hover); background: var(--forest);
-        }
-        .tech-img {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            opacity: 0; transform: scale(1.05); transition: opacity 0.6s ease, transform 6s ease;
-        }
-        .tech-img.active { opacity: 1; transform: scale(1); }
-        
-        .tech-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 4rem; }
-        .tag {
-            padding: 0.5rem 1.2rem; border-radius: 50px; background: var(--cream); border: 1px solid var(--beige);
-            font-size: 0.85rem; color: var(--charcoal-soft); display: flex; align-items: center; gap: 6px;
-        }
+      #teknologi {
+        background: var(--white);
+      }
+      .tech-slider-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 4rem;
+        align-items: center;
+        margin-top: 2rem;
+      }
+      .tech-tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .tech-tab {
+        padding: 1.8rem;
+        border-radius: var(--radius-md);
+        border: 1px solid transparent;
+        cursor: none;
+        transition: var(--transition-smooth);
+        text-align: left;
+        background: var(--cream-dark);
+        opacity: 0.5;
+        position: relative;
+        overflow: hidden;
+      }
+      .tech-tab.active {
+        background: var(--white);
+        opacity: 1;
+        border-color: var(--beige);
+        box-shadow: var(--shadow-soft);
+      }
+      .tech-tab::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 3px;
+        height: 100%;
+        background: var(--gold);
+        transform: scaleY(0);
+        transition: transform 0.4s ease;
+        transform-origin: top;
+      }
+      .tech-tab.active::before {
+        transform: scaleY(1);
+      }
 
-        /* ==========================================================================
+      .tech-tab-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      .tech-tab-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--forest);
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        transition: var(--transition-fast);
+        color: var(--gold);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+      .tech-tab.active .tech-tab-icon {
+        background: var(--forest);
+        color: var(--white);
+      }
+      .tech-tab h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: var(--forest);
+        font-weight: 600;
+      }
+      .tech-tab-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: var(--transition-smooth);
+        opacity: 0;
+      }
+      .tech-tab.active .tech-tab-content {
+        max-height: 150px;
+        opacity: 1;
+        margin-top: 0.5rem;
+      }
+      .tech-tab-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .tech-visuals {
+        position: relative;
+        height: 600px;
+        border-radius: 32px;
+        overflow: hidden;
+        background: var(--forest-deep);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+      }
+      .tech-img-wrapper {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.8s ease;
+      }
+      .tech-img-wrapper.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .tech-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.1);
+        transition: transform 10s linear;
+      }
+      .tech-img-wrapper.active .tech-img {
+        transform: scale(1);
+      }
+
+      /* Scanning Line Effect */
+      .scan-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        box-shadow: 0 0 15px var(--gold);
+        z-index: 10;
+        opacity: 0.6;
+        animation: scanMove 4s linear infinite;
+        pointer-events: none;
+      }
+      @keyframes scanMove {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+
+      /* Hotspots */
+      .hotspot {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: var(--gold);
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 15;
+        transform: translate(-50%, -50%);
+      }
+      .tech-brand-tag {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        padding: 0.5rem 1.25rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 100px;
+        color: var(--white);
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      .tech-brand-tag::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: #22c55e;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #22c55e;
+      }
+      .hotspot::before {
+        content: "";
+        position: absolute;
+        inset: -8px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      .hotspot-tip {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: rgba(18, 37, 24, 0.95);
+        backdrop-filter: blur(8px);
+        color: var(--white);
+        padding: 0.8rem 1.2rem;
+        border-radius: 12px;
+        white-space: nowrap;
+        font-size: 0.85rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition-fast);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .hotspot:hover .hotspot-tip {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 3rem;
+      }
+      .tag {
+        padding: 0.6rem 1.4rem;
+        border-radius: 50px;
+        background: var(--white);
+        border: 1px solid var(--beige);
+        font-size: 0.85rem;
+        color: var(--charcoal-soft);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: var(--transition-fast);
+      }
+      .tag:hover {
+        border-color: var(--gold);
+        color: var(--forest);
+        transform: translateY(-2px);
+      }
+
+      /* ==========================================================================
            7. GENDHIS SECTION
            ========================================================================== */
-        #produk { background: linear-gradient(135deg, var(--forest), #162c20); color: var(--cream); }
-        .gendhis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        .gendhis-text h2 { font-size: 4rem; margin-bottom: 1.2rem; color: var(--white); }
-        .gendhis-text p { color: rgba(255, 255, 255, 0.8); font-size: 1.05rem; margin-bottom: 2.5rem; max-width: 480px; }
-        
-        .chat-mockup {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-        .chat-header {
-            padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.15);
-        }
-        .chat-avatar {
-            width: 40px; height: 40px; background: var(--gold); color: var(--forest);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        }
-        .chat-body { padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
-        .bubble { max-width: 85%; padding: 0.85rem 1.2rem; border-radius: var(--radius-md); font-size: 0.95rem; line-height: 1.5; }
-        .bubble-user { background: rgba(255, 255, 255, 0.08); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
-        .bubble-bot { background: var(--white); color: var(--forest); align-self: flex-start; border-bottom-left-radius: 4px; font-weight: 400; box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
-        .chat-input {
-            padding: 1rem 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex; gap: 1rem; align-items: center; background: rgba(0,0,0,0.15);
-        }
+      #produk {
+        background: linear-gradient(135deg, var(--forest), #162c20);
+        color: var(--cream);
+      }
+      .gendhis-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .gendhis-text h2 {
+        font-size: 4rem;
+        margin-bottom: 1.2rem;
+        color: var(--white);
+      }
+      .gendhis-text p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.05rem;
+        margin-bottom: 2.5rem;
+        max-width: 480px;
+      }
 
-        /* ==========================================================================
+      .chat-mockup {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      }
+      .chat-header {
+        padding: 1.2rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(0, 0, 0, 0.15);
+      }
+      .chat-avatar {
+        width: 40px;
+        height: 40px;
+        background: var(--gold);
+        color: var(--forest);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chat-body {
+        padding: 2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .bubble {
+        max-width: 85%;
+        padding: 0.85rem 1.2rem;
+        border-radius: var(--radius-md);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .bubble-user {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--white);
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+      .bubble-bot {
+        background: var(--white);
+        color: var(--forest);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        font-weight: 400;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+      .chat-input {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.15);
+      }
+
+      /* ==========================================================================
            8. CERITA SECTION
            ========================================================================== */
-        #cerita { background: var(--cream-dark); overflow: hidden; }
-        .watermark {
-            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(-2deg);
-            font-family: var(--font-serif); font-size: 24vw; font-weight: 700; color: var(--forest);
-            opacity: 0.02; pointer-events: none; white-space: nowrap; line-height: 1; z-index: 0;
-        }
-        .cerita-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; position: relative; z-index: 2; }
-        .cerita-quote {
-            font-family: var(--font-serif); font-size: 2.2rem; color: var(--forest);
-            border-left: 2px solid var(--gold); padding-left: 1.5rem; margin-bottom: 2.5rem; line-height: 1.3; font-style: italic;
-        }
-        .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .value-card { background: var(--white); border: 1px solid var(--beige); padding: 1.8rem; border-radius: var(--radius-md); transition: var(--transition-fast); }
-        .value-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); border-color: var(--sage-light); }
-        .value-card h4 { font-size: 1.05rem; color: var(--forest); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 10px; font-weight: 600;}
-        .value-card p { font-size: 0.9rem; }
+      #cerita {
+        background: var(--cream-dark);
+        overflow: hidden;
+      }
+      .watermark {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-2deg);
+        font-family: var(--font-serif);
+        font-size: 24vw;
+        font-weight: 700;
+        color: var(--forest);
+        opacity: 0.02;
+        pointer-events: none;
+        white-space: nowrap;
+        line-height: 1;
+        z-index: 0;
+      }
+      .cerita-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        position: relative;
+        z-index: 2;
+      }
+      .cerita-quote {
+        font-family: var(--font-serif);
+        font-size: 2.2rem;
+        color: var(--forest);
+        border-left: 2px solid var(--gold);
+        padding-left: 1.5rem;
+        margin-bottom: 2.5rem;
+        line-height: 1.3;
+        font-style: italic;
+      }
+      .value-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .value-card {
+        background: var(--white);
+        border: 1px solid var(--beige);
+        padding: 1.8rem;
+        border-radius: var(--radius-md);
+        transition: var(--transition-fast);
+      }
+      .value-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-soft);
+        border-color: var(--sage-light);
+      }
+      .value-card h4 {
+        font-size: 1.05rem;
+        color: var(--forest);
+        margin-bottom: 0.6rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+      }
+      .value-card p {
+        font-size: 0.9rem;
+      }
 
-        /* ==========================================================================
+      /* ==========================================================================
            9. TIM SECTION
            ========================================================================== */
-        #tim { background: var(--white); }
-        .tim-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: flex-start; }
-        
-        .team-card {
-            background: var(--cream); border-radius: var(--radius-lg); padding: 3rem 2rem;
-            text-align: center; border: 1px solid var(--beige);
-            display: flex; flex-direction: column; align-items: center; 
-            transition: var(--transition-smooth); box-shadow: var(--shadow-soft);
-        }
-        .team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); background: var(--white); border-color: var(--sage-pale);}
-        .avatar { width: 90px; height: 90px; border-radius: 50%; background: var(--sage-pale); margin-bottom: 1.2rem; object-fit: cover; border: 3px solid var(--white); box-shadow: var(--shadow-soft);}
-        .team-card h3 { font-size: 1.6rem; color: var(--forest); margin-bottom: 0.2rem; }
-        .team-role { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; font-weight: 600; }
-        .team-bio { font-size: 0.95rem; margin-bottom: 1.5rem; min-height: 4.5em; flex-grow: 1; line-height: 1.6;} 
-        
-        .expand-trigger {
-            background: var(--white); border: 1px solid var(--beige); color: var(--sage); font-size: 0.85rem; font-weight: 500;
-            display: flex; align-items: center; gap: 6px; padding: 0.5rem 1.2rem; cursor: none;
-            border-radius: var(--radius-full); transition: var(--transition-fast);
-        }
-        .expand-trigger:hover { background: var(--forest); color: var(--white); border-color: var(--forest); }
-        .expand-trigger i { transition: transform 0.4s ease; }
-        
-        .expanded-area {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
-            width: 100%; text-align: left; opacity: 0;
-        }
-        .team-card.expanded .expanded-area { max-height: 500px; opacity: 1; padding-top: 1.5rem; margin-top: 1.5rem; border-top: 1px solid var(--beige); }
-        .team-card.expanded .expand-trigger i { transform: rotate(180deg); }
-        
-        .expanded-text { font-size: 0.9rem; margin-bottom: 1.2rem; line-height: 1.6;}
-        .social-icons { display: flex; gap: 10px; justify-content: center; }
-        .social-icons a { 
-            display: flex; align-items: center; justify-content: center; width: 36px; height: 36px;
-            border-radius: 50%; border: 1px solid var(--beige); color: var(--sage); transition: var(--transition-fast); cursor: none; 
-        }
-        .social-icons a:hover { background: var(--forest); color: var(--white); border-color: var(--forest); }
+      #tim {
+        background: var(--white);
+      }
+      .tim-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        align-items: flex-start;
+      }
 
-        /* ==========================================================================
+      .team-card {
+        background: var(--cream);
+        border-radius: var(--radius-lg);
+        padding: 3rem 2rem;
+        text-align: center;
+        border: 1px solid var(--beige);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: var(--transition-smooth);
+        box-shadow: var(--shadow-soft);
+      }
+      .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+        background: var(--white);
+        border-color: var(--sage-pale);
+      }
+      .avatar {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: var(--sage-pale);
+        margin-bottom: 1.2rem;
+        object-fit: cover;
+        border: 3px solid var(--white);
+        box-shadow: var(--shadow-soft);
+      }
+      .team-card h3 {
+        font-size: 1.6rem;
+        color: var(--forest);
+        margin-bottom: 0.2rem;
+      }
+      .team-role {
+        font-size: 0.7rem;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1.2rem;
+        font-weight: 600;
+      }
+      .team-bio {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        min-height: 4.5em;
+        flex-grow: 1;
+        line-height: 1.6;
+      }
+
+      .expand-trigger {
+        background: var(--white);
+        border: 1px solid var(--beige);
+        color: var(--sage);
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0.5rem 1.2rem;
+        cursor: none;
+        border-radius: var(--radius-full);
+        transition: var(--transition-fast);
+      }
+      .expand-trigger:hover {
+        background: var(--forest);
+        color: var(--white);
+        border-color: var(--forest);
+      }
+      .expand-trigger i {
+        transition: transform 0.4s ease;
+      }
+
+      .expanded-area {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          padding 0.4s ease,
+          opacity 0.3s ease;
+        width: 100%;
+        text-align: left;
+        opacity: 0;
+      }
+      .team-card.expanded .expanded-area {
+        max-height: 500px;
+        opacity: 1;
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+        border-top: 1px solid var(--beige);
+      }
+      .team-card.expanded .expand-trigger i {
+        transform: rotate(180deg);
+      }
+
+      .expanded-text {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+      }
+      .social-icons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--beige);
+        color: var(--sage);
+        transition: var(--transition-fast);
+        cursor: none;
+      }
+      .social-icons a:hover {
+        background: var(--forest);
+        color: var(--white);
+        border-color: var(--forest);
+      }
+
+      /* ==========================================================================
            10. VISION SECTION
            ========================================================================== */
-        #visi { background: var(--cream); }
-        .timeline { display: flex; justify-content: space-between; position: relative; margin-top: 4rem; }
-        .timeline-container { position: relative; width: 100%; }
-        .timeline-container::before {
-            content: ''; position: absolute; top: 14px; left: 0; width: 100%; height: 1px;
-            background: var(--beige); z-index: 1;
-        }
-        .t-item { position: relative; z-index: 2; width: 22%; display: flex; flex-direction: column; align-items: flex-start;}
-        .t-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--white); border: 2px solid var(--beige); margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--sage); transition: var(--transition-fast);}
-        .t-item.active .t-dot { background: var(--forest); border-color: var(--forest); color: var(--white); box-shadow: 0 0 0 4px rgba(28,56,41,0.08); }
-        .t-item.progress .t-dot { border-color: var(--sage); border-width: 2px; }
-        .t-badge { display: inline-block; background: var(--gold); color: var(--forest); font-size: 0.65rem; padding: 4px 10px; border-radius: 20px; margin-bottom: 0.6rem; font-weight: 600; text-transform: uppercase;}
-        .t-item h4 { font-size: 1.1rem; color: var(--forest); margin-bottom: 0.4rem; font-weight: 600; display: flex; align-items: center; gap: 8px;}
-        .t-item p { font-size: 0.9rem;}
+      #visi {
+        background: var(--cream);
+      }
+      .timeline {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin-top: 4rem;
+      }
+      .timeline-container {
+        position: relative;
+        width: 100%;
+      }
+      .timeline-container::before {
+        content: "";
+        position: absolute;
+        top: 14px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--beige);
+        z-index: 1;
+      }
+      .t-item {
+        position: relative;
+        z-index: 2;
+        width: 22%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .t-dot {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--white);
+        border: 2px solid var(--beige);
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--sage);
+        transition: var(--transition-fast);
+      }
+      .t-item.active .t-dot {
+        background: var(--forest);
+        border-color: var(--forest);
+        color: var(--white);
+        box-shadow: 0 0 0 4px rgba(28, 56, 41, 0.08);
+      }
+      .t-item.progress .t-dot {
+        border-color: var(--sage);
+        border-width: 2px;
+      }
+      .t-badge {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--forest);
+        font-size: 0.65rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        margin-bottom: 0.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .t-item h4 {
+        font-size: 1.1rem;
+        color: var(--forest);
+        margin-bottom: 0.4rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .t-item p {
+        font-size: 0.9rem;
+      }
 
-        /* ==========================================================================
+      /* ==========================================================================
            11. PILOT CTA SECTION
            ========================================================================== */
-        #pilot { background: var(--forest); color: var(--white); }
-        .pilot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        .pilot-title { font-size: 3.5rem; color: var(--cream); margin-bottom: 1.2rem; }
-        .pilot-desc { font-size: 1.05rem; color: rgba(250, 247, 242, 0.8); margin-bottom: 2.5rem; }
-        
-        .btn-wa { background: #25D366; color: white; }
-        .btn-wa:hover { background: #1eb956; box-shadow: 0 6px 20px rgba(37,211,102,0.2); }
-        
-        .pilot-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            padding: 3rem 2.5rem; border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        .pilot-card h3 { font-size: 1.6rem; margin-bottom: 1rem; color: var(--gold); }
-        .pilot-card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); }
-        .pilot-list { list-style: none; margin: 2rem 0 2.5rem 0; display: flex; flex-direction: column; gap: 1rem; }
-        .pilot-list li { display: flex; gap: 12px; font-size: 0.95rem; color: var(--cream); align-items: flex-start; }
+      #pilot {
+        background: var(--forest);
+        color: var(--white);
+      }
+      .pilot-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .pilot-title {
+        font-size: 3.5rem;
+        color: var(--cream);
+        margin-bottom: 1.2rem;
+      }
+      .pilot-desc {
+        font-size: 1.05rem;
+        color: rgba(250, 247, 242, 0.8);
+        margin-bottom: 2.5rem;
+      }
 
-        /* ==========================================================================
+      .btn-wa {
+        background: #25d366;
+        color: white;
+      }
+      .btn-wa:hover {
+        background: #1eb956;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);
+      }
+
+      .pilot-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        padding: 3rem 2.5rem;
+        border-radius: var(--radius-lg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+      .pilot-card h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        color: var(--gold);
+      }
+      .pilot-card p {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .pilot-list {
+        list-style: none;
+        margin: 2rem 0 2.5rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .pilot-list li {
+        display: flex;
+        gap: 12px;
+        font-size: 0.95rem;
+        color: var(--cream);
+        align-items: flex-start;
+      }
+
+      /* ==========================================================================
            12. FOOTER
            ========================================================================== */
-        footer { background: var(--forest-deep); color: var(--white); padding: 4rem 0 3rem 0; border-top: 1px solid rgba(255,255,255,0.03); }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; }
-        .f-nav { display: flex; gap: 2.5rem; }
-        .f-nav a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: var(--transition-fast); cursor: none;}
-        .f-nav a:hover { color: var(--white); }
+      footer {
+        background: var(--forest-deep);
+        color: var(--white);
+        padding: 4rem 0 3rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .f-nav {
+        display: flex;
+        gap: 2.5rem;
+      }
+      .f-nav a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: var(--transition-fast);
+        cursor: none;
+      }
+      .f-nav a:hover {
+        color: var(--white);
+      }
 
-        /* ==========================================================================
+      /* ==========================================================================
            RESPONSIVE DESIGN (Sleek Mobile Adjustment)
            ========================================================================== */
-        @media (max-width: 1024px) {
-            .container { padding: 0 2.5rem; }
-            .hero-grid, .tech-slider-layout, .gendhis-grid, .cerita-grid, .pilot-grid { grid-template-columns: 1fr; gap: 3.5rem; }
-            .problem-grid, .tim-grid, .value-grid { grid-template-columns: repeat(2, 1fr); }
-            .solution-grid { grid-template-columns: 1fr; }
-            .hero-showcase { display: none; } 
-            .tech-visuals { height: 350px; }
-            .timeline-container::before { left: 14px; top: 0; width: 1px; height: 100%; }
-            .timeline { flex-direction: column; gap: 2.5rem; }
-            .t-item { width: 100%; display: flex; flex-direction: row; gap: 1.5rem; align-items: flex-start; }
-            .t-dot { margin: 0; flex-shrink: 0; }
+      @media (max-width: 1024px) {
+        .container {
+          padding: 0 2.5rem;
+        }
+        .hero-grid,
+        .tech-slider-layout,
+        .gendhis-grid,
+        .cerita-grid,
+        .pilot-grid {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+        }
+        .problem-grid,
+        .tim-grid,
+        .value-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .solution-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-showcase {
+          display: none;
+        }
+        .tech-visuals {
+          height: 350px;
+        }
+        .timeline-container::before {
+          left: 14px;
+          top: 0;
+          width: 1px;
+          height: 100%;
+        }
+        .timeline {
+          flex-direction: column;
+          gap: 2.5rem;
+        }
+        .t-item {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          gap: 1.5rem;
+          align-items: flex-start;
+        }
+        .t-dot {
+          margin: 0;
+          flex-shrink: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        section {
+          padding: 4.5rem 0;
+        } /* Tighter mobile sections */
+        .container {
+          padding: 0 1.5rem;
         }
 
-        @media (max-width: 768px) {
-            section { padding: 4.5rem 0; } /* Tighter mobile sections */
-            .container { padding: 0 1.5rem; }
-            
-            nav { padding: 1rem 1.5rem; }
-            nav.scrolled { padding: 0.8rem 1.5rem; }
-            
-            /* Mobile Menu Hamburger Logic */
-            .nav-links {
-                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-                background: rgba(250, 247, 242, 0.98); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-                flex-direction: column; justify-content: center; align-items: center;
-                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); gap: 2rem; z-index: 100;
-            }
-            .nav-links.active { right: 0; }
-            .nav-links a { font-size: 1.2rem; font-weight: 500; }
-            .nav-btn { display: none; }
-            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; z-index: 101; cursor: pointer; }
-
-            .problem-grid, .tim-grid, .value-grid { grid-template-columns: 1fr; }
-            .problem-card { padding: 2rem 1.5rem; }
-            .team-card { padding: 2.5rem 1.5rem; }
-            .solution-card { padding: 2.5rem 1.5rem; }
-            
-            .hero-title { font-size: clamp(2.5rem, 8vw, 3.5rem); }
-            .footer-content { flex-direction: column; gap: 2rem; text-align: center; }
-            .hero-actions { flex-direction: column; width: 100%; }
-            .hero-actions .btn { width: 100%; }
-            .pilot-card { padding: 2.5rem 1.5rem; }
-            .chat-mockup { border-radius: var(--radius-md); }
-            .chat-header { padding: 1rem 1.2rem; }
-            .chat-body { padding: 1.5rem 1.2rem; }
-            .chat-input { padding: 1rem 1.2rem; }
+        nav {
+          padding: 1rem 1.5rem;
         }
+        nav.scrolled {
+          padding: 0.8rem 1.5rem;
+        }
+
+        /* Mobile Menu Hamburger Logic */
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 100%;
+          height: 100vh;
+          background: rgba(250, 247, 242, 0.98);
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          gap: 2rem;
+          z-index: 100;
+        }
+        .nav-links.active {
+          right: 0;
+        }
+        .nav-links a {
+          font-size: 1.2rem;
+          font-weight: 500;
+        }
+        .nav-btn {
+          display: none;
+        }
+        .mobile-menu-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 101;
+          cursor: pointer;
+        }
+
+        .problem-grid,
+        .tim-grid,
+        .value-grid {
+          grid-template-columns: 1fr;
+        }
+        .problem-card {
+          padding: 2rem 1.5rem;
+        }
+        .team-card {
+          padding: 2.5rem 1.5rem;
+        }
+        .solution-card {
+          padding: 2.5rem 1.5rem;
+        }
+
+        .hero-title {
+          font-size: clamp(2.5rem, 8vw, 3.5rem);
+        }
+        .footer-content {
+          flex-direction: column;
+          gap: 2rem;
+          text-align: center;
+        }
+        .hero-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+        .hero-actions .btn {
+          width: 100%;
+        }
+        .pilot-card {
+          padding: 2.5rem 1.5rem;
+        }
+        .chat-mockup {
+          border-radius: var(--radius-md);
+        }
+        .chat-header {
+          padding: 1rem 1.2rem;
+        }
+        .chat-body {
+          padding: 1.5rem 1.2rem;
+        }
+        .chat-input {
+          padding: 1rem 1.2rem;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="grain-overlay"></div>
 
     <!-- Custom Cursor (Desktop) -->
@@ -538,531 +1744,1137 @@
 
     <!-- 1. NAVBAR (Sleek) -->
     <nav id="navbar" class="interactive">
-        <div class="container nav-container">
-            <a href="#beranda" class="logo interactive">
-                <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 10v6a10 10 0 0 0 20 0v-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                    <path d="M16 4v14M11 9l5-5 5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                UMBARA
-            </a>
-            
-            <div class="nav-links" id="nav-links">
-                <a href="#cerita" class="interactive mobile-link">Cerita</a>
-                <a href="#solusi" class="interactive mobile-link">Solusi</a>
-                <a href="#produk" class="interactive mobile-link">Produk</a>
-                <a href="#teknologi" class="interactive mobile-link">Teknologi</a>
-                <a href="#visi" class="interactive mobile-link">Visi</a>
-                <!-- Mobile only button inside menu -->
-                <a href="#produk" class="btn btn-primary interactive mobile-link" style="display: none;">Coba Gendhis</a>
-            </div>
-            
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="#produk" class="btn btn-primary nav-btn interactive">Coba Gendhis <i data-lucide="arrow-up-right" width="16" height="16"></i></a>
-                <button class="mobile-menu-btn interactive" id="mobile-menu-btn" aria-label="Toggle Menu">
-                    <i data-lucide="menu" width="24" height="24" id="menu-icon"></i>
-                </button>
-            </div>
+      <div class="container nav-container">
+        <a href="#beranda" class="logo interactive">
+          <svg
+            class="logo-mark"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 10v6a10 10 0 0 0 20 0v-6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M16 4v14M11 9l5-5 5 5"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          UMBARA
+        </a>
+
+        <div class="nav-links" id="nav-links">
+          <a href="#cerita" class="interactive mobile-link">Cerita</a>
+          <a href="#solusi" class="interactive mobile-link">Solusi</a>
+          <a href="#produk" class="interactive mobile-link">Produk</a>
+          <a href="#teknologi" class="interactive mobile-link">Teknologi</a>
+          <a href="#visi" class="interactive mobile-link">Visi</a>
+          <!-- Mobile only button inside menu -->
+          <a
+            href="#produk"
+            class="btn btn-primary interactive mobile-link"
+            style="display: none"
+            >Coba Gendhis</a
+          >
         </div>
+
+        <div style="display: flex; align-items: center; gap: 1rem">
+          <a href="#produk" class="btn btn-primary nav-btn interactive"
+            >Coba Gendhis
+            <i data-lucide="arrow-up-right" width="16" height="16"></i
+          ></a>
+          <button
+            class="mobile-menu-btn interactive"
+            id="mobile-menu-btn"
+            aria-label="Toggle Menu"
+          >
+            <i data-lucide="menu" width="24" height="24" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
     </nav>
 
     <!-- 2. HERO SECTION -->
     <section id="beranda">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="https://cdn.pixabay.com/video/2020/05/11/38600-418847842_large.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <span class="section-label" style="color: var(--gold-light);">TEKNOLOGI PERTANIAN & PETERNAKAN</span>
-                <h1 class="hero-title serif">Ambil keputusan yang tepat,<br>tanpa menebak.</h1>
-                <p class="hero-subtitle">
-                    Umbara membantu pelaku usaha di sektor pertanian dan peternakan memahami kondisi mereka, memantau perkembangan, dan menentukan langkah terbaik — dengan cara yang sederhana.
-                </p>
-                <div class="hero-actions">
-                    <a href="#produk" class="btn btn-gold interactive">Coba Gendhis <i data-lucide="arrow-up-right" width="18" height="18"></i></a>
-                    <a href="#teknologi" class="btn btn-ghost interactive">Lihat Cara Kerja</a>
-                </div>
-                <div class="hero-note">
-                    <i data-lucide="sparkles" width="16" height="16" style="color: var(--gold-light);"></i> Dimulai dari peternakan. Dibangun untuk ekosistem agrikultur.
-                </div>
-            </div>
-
-            <div class="hero-showcase">
-                <div class="f-card f-card-1 interactive">
-                    <span class="f-label">Status Ternak</span>
-                    <span class="f-value"><div class="f-dot"></div> SAPI_A01 · Aktif</span>
-                </div>
-                <div class="f-card f-card-2 interactive">
-                    <span class="f-label">Kondisi Kesehatan</span>
-                    <span class="f-value">78% Normal</span>
-                    <div class="f-progress"><div class="f-progress-bar"></div></div>
-                </div>
-                <div class="f-card f-card-3 interactive">
-                    <span class="f-label" style="color: var(--gold);">Gendhis AI</span>
-                    <span style="font-weight: 300;">"Disarankan inseminasi dalam 1–2 hari."</span>
-                </div>
-            </div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="section-label">TEKNOLOGI PERTANIAN & PETERNAKAN</span>
+          <h1 class="hero-title serif">
+            Ambil keputusan yang tepat,<br />tanpa menebak.
+          </h1>
+          <p class="hero-subtitle">
+            Umbara membantu pelaku usaha di sektor pertanian dan peternakan
+            memahami kondisi mereka, memantau perkembangan, dan menentukan
+            langkah terbaik — dengan cara yang sederhana.
+          </p>
+          <div class="hero-actions">
+            <a href="#pilot" class="btn btn-primary interactive"
+              >Coba Gendhis
+              <i data-lucide="arrow-up-right" width="18" height="18"></i
+            ></a>
+            <a
+              href="#teknologi"
+              class="btn btn-ghost interactive"
+              style="color: var(--forest); border-color: var(--forest)"
+              >Lihat Cara Kerja</a
+            >
+          </div>
+          <div class="hero-note" style="color: var(--charcoal-soft)">
+            <i
+              data-lucide="sparkles"
+              width="16"
+              height="16"
+              style="color: var(--gold)"
+            ></i>
+            Dimulai dari peternakan. Dibangun untuk ekosistem agrikultur.
+          </div>
         </div>
+
+        <div class="hero-slider">
+          <div class="slider-wrapper">
+            <div class="slider-item active">
+              <video
+                src="assets/farmer_4.mp4"
+                type="video/mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+              ></video>
+              <div class="play-btn-round">
+                <i data-lucide="play" fill="currentColor"></i>
+              </div>
+              <div class="video-play-hint">
+                <div class="farmer-info">
+                  <span>Partner Utama</span>
+                  <h4>Bapak Wijaya</h4>
+                </div>
+              </div>
+            </div>
+            <div class="slider-item">
+              <img src="assets/farmer_2.png" alt="Farmer Partner 2" />
+              <div class="play-btn-round">
+                <i data-lucide="play" fill="currentColor"></i>
+              </div>
+              <div class="video-play-hint">
+                <div class="farmer-info">
+                  <span>Peternak Sapi</span>
+                  <h4>Ibu Siti Aminah</h4>
+                </div>
+              </div>
+            </div>
+            <div class="slider-item">
+              <img src="assets/farmer_3.png" alt="Farmer Partner 3" />
+              <div class="play-btn-round">
+                <i data-lucide="play" fill="currentColor"></i>
+              </div>
+              <div class="video-play-hint">
+                <div class="farmer-info">
+                  <span>Owner Farm</span>
+                  <h4>Mas Ardiansyah</h4>
+                </div>
+              </div>
+            </div>
+            <div class="slider-item">
+              <img src="assets/farmer_4_sholeh.png" alt="Farmer Partner 4" />
+              <div class="play-btn-round">
+                <i data-lucide="play" fill="currentColor"></i>
+              </div>
+              <div class="video-play-hint">
+                <div class="farmer-info">
+                  <span>Peternak Domba</span>
+                  <h4>Bapak Sholeh</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-nav">
+            <div class="nav-dot active" onclick="jumpToSlide(0)"></div>
+            <div class="nav-dot" onclick="jumpToSlide(1)"></div>
+            <div class="nav-dot" onclick="jumpToSlide(2)"></div>
+            <div class="nav-dot" onclick="jumpToSlide(3)"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 3. PROBLEM SECTION -->
     <section id="masalah">
-        <div class="container">
-            <div class="reveal title-margin">
-                <span class="section-label">MASALAH NYATA</span>
-                <h2 class="serif" style="font-size: 3rem; color: var(--forest); max-width: 600px;">Masalah yang selama ini dianggap biasa</h2>
-            </div>
-            <div class="problem-grid">
-                <div class="problem-card reveal reveal-delay-1 interactive">
-                    <span class="problem-num">01</span>
-                    <div class="icon-wrapper"><i data-lucide="clock" width="22" height="22"></i></div>
-                    <h3>Telat Inseminasi</h3>
-                    <p>Momen birahi terlewat tanpa terdeteksi. Produktivitas menurun, kerugian menumpuk diam-diam.</p>
-                </div>
-                <div class="problem-card reveal reveal-delay-2 interactive">
-                    <span class="problem-num">02</span>
-                    <div class="icon-wrapper"><i data-lucide="scan-line" width="22" height="22"></i></div>
-                    <h3>Sulit Mengenali Ternak</h3>
-                    <p>Ratusan ekor, sulit dipantau satu per satu. Identifikasi manual memakan waktu dan sering tidak akurat.</p>
-                </div>
-                <div class="problem-card reveal reveal-delay-3 interactive">
-                    <span class="problem-num">03</span>
-                    <div class="icon-wrapper"><i data-lucide="file-x-2" width="22" height="22"></i></div>
-                    <h3>Data Tidak Tercatat</h3>
-                    <p>Riwayat reproduksi dan kesehatan tersimpan di ingatan — bukan di sistem yang bisa diandalkan.</p>
-                </div>
-                <div class="problem-card reveal reveal-delay-4 interactive">
-                    <span class="problem-num">04</span>
-                    <div class="icon-wrapper"><i data-lucide="help-circle" width="22" height="22"></i></div>
-                    <h3>Keputusan dari Feeling</h3>
-                    <p>Tanpa data yang jelas, semua keputusan bersifat perkiraan. Risikonya besar, hasilnya tidak konsisten.</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="reveal title-margin">
+          <span class="section-label">MASALAH NYATA</span>
+          <h2
+            class="serif"
+            style="font-size: 3rem; color: var(--forest); max-width: 600px"
+          >
+            Masalah yang selama ini dianggap biasa
+          </h2>
         </div>
+        <div class="problem-grid">
+          <div class="problem-card reveal reveal-delay-1 interactive">
+            <span class="problem-num">01</span>
+            <div class="icon-wrapper">
+              <i data-lucide="clock" width="22" height="22"></i>
+            </div>
+            <h3>Telat Inseminasi</h3>
+            <p>
+              Momen birahi terlewat tanpa terdeteksi. Produktivitas menurun,
+              kerugian menumpuk diam-diam.
+            </p>
+          </div>
+          <div class="problem-card reveal reveal-delay-2 interactive">
+            <span class="problem-num">02</span>
+            <div class="icon-wrapper">
+              <i data-lucide="scan-line" width="22" height="22"></i>
+            </div>
+            <h3>Sulit Mengenali Ternak</h3>
+            <p>
+              Ratusan ekor, sulit dipantau satu per satu. Identifikasi manual
+              memakan waktu dan sering tidak akurat.
+            </p>
+          </div>
+          <div class="problem-card reveal reveal-delay-3 interactive">
+            <span class="problem-num">03</span>
+            <div class="icon-wrapper">
+              <i data-lucide="file-x-2" width="22" height="22"></i>
+            </div>
+            <h3>Data Tidak Tercatat</h3>
+            <p>
+              Riwayat reproduksi dan kesehatan tersimpan di ingatan — bukan di
+              sistem yang bisa diandalkan.
+            </p>
+          </div>
+          <div class="problem-card reveal reveal-delay-4 interactive">
+            <span class="problem-num">04</span>
+            <div class="icon-wrapper">
+              <i data-lucide="help-circle" width="22" height="22"></i>
+            </div>
+            <h3>Keputusan dari Feeling</h3>
+            <p>
+              Tanpa data yang jelas, semua keputusan bersifat perkiraan.
+              Risikonya besar, hasilnya tidak konsisten.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 4. TRANSITION QUOTE -->
     <section class="quote-section">
+      <div class="quote-card reveal">
+        <!-- 
+          BACKGROUND VIDEO 
+          Replace the poster and the commented source with your actual video files.
+        -->
+        <div class="quote-video-container">
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            poster="https://images.unsplash.com/photo-1595166297071-72f8ea3b9e4d?q=80&w=2000&auto=format&fit=crop"
+          >
+            <source
+              src="assets/Permintaan_Video_Instagram_.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
         <div class="quote-glow"></div>
-        <h2 class="quote-text reveal">
-            "Ini bukan soal bekerja lebih keras.<br>Tapi bekerja <i style="color: var(--gold);">lebih tepat.</i>"
+        <h2 class="quote-text">
+          "Ini Bukan Soal Bekerja Lebih Keras.<br />Tapi Bekerja
+          <span class="word-rotator">
+            <span class="word-rotator-inner">
+              <span>Lebih Tepat.</span>
+              <span>Lebih Efisien.</span>
+              <span>Lebih Aman.</span>
+              <span>Lebih Cepat.</span>
+              <span>Lebih Akurat.</span>
+              <span>Lebih Tepat.</span>
+            </span> </span
+          >"
         </h2>
+      </div>
     </section>
 
     <!-- 5. SOLUTION SECTION -->
     <section id="solusi">
-        <div class="container">
-            <div class="reveal title-margin">
-                <span class="section-label">SOLUSI KAMI</span>
-                <h2 class="serif" style="font-size: 3rem; color: var(--forest);">Teknologi yang bekerja <i style="color: var(--sage);">untuk Anda</i></h2>
-            </div>
-            <div class="solution-grid">
-                <div class="solution-card reveal reveal-delay-1 interactive">
-                    <div class="icon-wrapper" style="background: var(--forest); color: white;"><i data-lucide="brain-circuit" width="24" height="24"></i></div>
-                    <h3>Membantu Mengingat</h3>
-                    <p>Semua data ternak tercatat otomatis — riwayat reproduksi, kesehatan, hingga pola perilaku. Tidak ada yang terlewat.</p>
-                </div>
-                <div class="solution-card reveal reveal-delay-2 interactive">
-                    <div class="icon-wrapper" style="background: var(--forest); color: white;"><i data-lucide="activity" width="24" height="24"></i></div>
-                    <h3>Membantu Memantau</h3>
-                    <p>Sensor pintar pada kalung ternak memantau aktivitas 24/7. Anda tahu kondisi ternak kapan saja, di mana saja.</p>
-                </div>
-                <div class="solution-card reveal reveal-delay-3 interactive">
-                    <div class="icon-wrapper" style="background: var(--forest); color: white;"><i data-lucide="check-circle-2" width="24" height="24"></i></div>
-                    <h3>Membantu Memutuskan</h3>
-                    <p>Rekomendasi berbasis data, bukan perkiraan. Gendhis menganalisa kondisi ternak dan memberi saran yang tepat waktu.</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="reveal title-margin">
+          <span class="section-label">SOLUSI KAMI</span>
+          <h2 class="serif" style="font-size: 3rem; color: var(--forest)">
+            Teknologi yang bekerja <i style="color: var(--sage)">untuk Anda</i>
+          </h2>
         </div>
+        <div class="solution-grid">
+          <div class="solution-card reveal reveal-delay-1 interactive">
+            <div
+              class="icon-wrapper"
+              style="background: var(--forest); color: white"
+            >
+              <i data-lucide="brain-circuit" width="24" height="24"></i>
+            </div>
+            <h3>Membantu Mengingat</h3>
+            <p>
+              Semua data ternak tercatat otomatis — riwayat reproduksi,
+              kesehatan, hingga pola perilaku. Tidak ada yang terlewat.
+            </p>
+          </div>
+          <div class="solution-card reveal reveal-delay-2 interactive">
+            <div
+              class="icon-wrapper"
+              style="background: var(--forest); color: white"
+            >
+              <i data-lucide="activity" width="24" height="24"></i>
+            </div>
+            <h3>Membantu Memantau</h3>
+            <p>
+              Sensor pintar pada kalung ternak memantau aktivitas 24/7. Anda
+              tahu kondisi ternak kapan saja, di mana saja.
+            </p>
+          </div>
+          <div class="solution-card reveal reveal-delay-3 interactive">
+            <div
+              class="icon-wrapper"
+              style="background: var(--forest); color: white"
+            >
+              <i data-lucide="check-circle-2" width="24" height="24"></i>
+            </div>
+            <h3>Membantu Memutuskan</h3>
+            <p>
+              Rekomendasi berbasis data, bukan perkiraan. Gendhis menganalisa
+              kondisi ternak dan memberi saran yang tepat waktu.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 6. TECHNOLOGY SECTION -->
     <section id="teknologi">
-        <div class="container">
-            <div class="reveal title-margin text-center" style="text-align: center;">
-                <span class="section-label">CARA KERJA</span>
-                <h2 class="serif" style="font-size: 3rem; color: var(--forest);">Sederhana dari luar, cerdas di dalamnya</h2>
-            </div>
-            
-            <div class="tech-slider-layout reveal reveal-delay-2">
-                <div class="tech-tabs">
-                    <div class="tech-tab active interactive" onclick="switchTech(0)">
-                        <div class="tech-tab-header">
-                            <div class="tech-tab-icon"><i data-lucide="radio" width="18" height="18"></i></div>
-                            <h3>Kalung Pintar (Sensor)</h3>
-                        </div>
-                        <div class="tech-tab-content">
-                            <p>Dipasang di leher ternak. Sensor khusus membaca pergerakan, aktivitas makan, dan suhu secara real-time, 24 jam sehari di lapangan.</p>
-                        </div>
-                    </div>
-                    <div class="tech-tab interactive" onclick="switchTech(1)">
-                        <div class="tech-tab-header">
-                            <div class="tech-tab-icon"><i data-lucide="settings-2" width="18" height="18"></i></div>
-                            <h3>Analisa Otomatis</h3>
-                        </div>
-                        <div class="tech-tab-content">
-                            <p>Data dikirim ke sistem cloud dan langsung diproses menggunakan model Machine Learning yang dilatih khusus untuk peternakan Indonesia.</p>
-                        </div>
-                    </div>
-                    <div class="tech-tab interactive" onclick="switchTech(2)">
-                        <div class="tech-tab-header">
-                            <div class="tech-tab-icon"><i data-lucide="message-square" width="18" height="18"></i></div>
-                            <h3>Gendhis Bicara</h3>
-                        </div>
-                        <div class="tech-tab-content">
-                            <p>Tidak perlu melihat grafik rumit. Hasil analisa diterjemahkan ke dalam bahasa sehari-hari lewat Gendhis, memberi tahu Anda kapan harus bertindak.</p>
-                        </div>
-                    </div>
+      <div class="container">
+        <div class="reveal title-margin text-center" style="text-align: center">
+          <span class="section-label">CARA KERJA</span>
+          <h2 class="serif" style="font-size: 3rem; color: var(--forest)">
+            Sederhana dari luar, cerdas di dalamnya
+          </h2>
+                <div class="tech-slider-layout reveal reveal-delay-2">
+          <div class="tech-tabs">
+            <div class="tech-tab active interactive" onclick="switchTech(0)">
+              <div class="tech-tab-header">
+                <div class="tech-tab-icon">
+                  <i data-lucide="radio" width="22" height="22"></i>
                 </div>
-                
-                <div class="tech-visuals">
-                    <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=1000&auto=format&fit=crop" alt="Sapi dengan sensor" class="tech-img active" id="tech-img-0">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" alt="Dashboard Analitik" class="tech-img" id="tech-img-1">
-                    <img src="https://images.unsplash.com/photo-1629470937822-4aef2577c229?q=80&w=1000&auto=format&fit=crop" alt="Petani menggunakan smartphone" class="tech-img" id="tech-img-2">
+                <h3>Hardware Sensor</h3>
+              </div>
+              <div class="tech-tab-content">
+                <p>
+                  Satu perangkat simpel di leher ternak yang memantau segalanya:
+                  gerak, suhu, hingga kebiasaan makan — diolah menjadi data akurat.
+                </p>
+              </div>
+            </div>
+            <div class="tech-tab interactive" onclick="switchTech(1)">
+              <div class="tech-tab-header">
+                <div class="tech-tab-icon">
+                  <i data-lucide="database" width="22" height="22"></i>
                 </div>
+                <h3>Cloud Intelligence</h3>
+              </div>
+              <div class="tech-tab-content">
+                <p>
+                  Data dikirim secara otomatis ke cloud. Machine learning kami
+                  menganalisa anomali dan pola kesehatan secara instan.
+                </p>
+              </div>
             </div>
-            
-            <div class="tech-tags reveal reveal-delay-3">
-                <div class="tag"><i data-lucide="check" width="14" height="14" style="color: var(--forest);"></i> Sensor Gerak & Suhu</div>
-                <div class="tag"><i data-lucide="check" width="14" height="14" style="color: var(--forest);"></i> Transmisi Data Real-time</div>
-                <div class="tag"><i data-lucide="check" width="14" height="14" style="color: var(--forest);"></i> Machine Learning</div>
-                <div class="tag"><i data-lucide="check" width="14" height="14" style="color: var(--forest);"></i> AI Assistant</div>
-                <div class="tag"><i data-lucide="check" width="14" height="14" style="color: var(--forest);"></i> Dashboard Web</div>
+            <div class="tech-tab interactive" onclick="switchTech(2)">
+              <div class="tech-tab-header">
+                <div class="tech-tab-icon">
+                  <i data-lucide="sparkles" width="22" height="22"></i>
+                </div>
+                <h3>Asisten Gendhis</h3>
+              </div>
+              <div class="tech-tab-content">
+                <p>
+                  Laporan teknis rumit diterjemahkan menjadi saran manusiawi.
+                  Gendhis memberi tahu Anda apa yang harus dilakukan, kapan saja.
+                </p>
+              </div>
             </div>
+          </div>
+
+          <div class="tech-visuals">
+            <!-- Scan Line Overlay -->
+            <div class="scan-line"></div>
+
+            <!-- Visual 0: Collar -->
+            <div class="tech-img-wrapper active" id="tech-img-0">
+              <img src="assets/collar_premium.png" alt="Smart Sensor" class="tech-img" />
+              <div class="hotspot" style="top: 45%; left: 55%">
+                <div class="hotspot-tip">Sensor Suhu Presisi (±0.1°C)</div>
+              </div>
+              <div class="hotspot" style="top: 60%; left: 40%">
+                <div class="hotspot-tip">Akselerometer 3-Axis (Monitoring Gerak)</div>
+              </div>
+            </div>
+
+            <!-- Visual 1: Dashboard -->
+            <div class="tech-img-wrapper" id="tech-img-1">
+              <div class="tech-brand-tag">Bara Farm</div>
+              <img src="assets/dashboard_bara.png" alt="Cloud Data" class="tech-img" />
+              <div class="hotspot" style="top: 35%; left: 30%">
+                <div class="hotspot-tip">Deep Learning Pattern Analysis</div>
+              </div>
+              <div class="hotspot" style="top: 70%; left: 75%">
+                <div class="hotspot-tip">Real-time GPS Tracking Data</div>
+              </div>
+            </div>
+
+            <!-- Visual 2: Gendhis -->
+            <div class="tech-img-wrapper" id="tech-img-2">
+              <img src="assets/gendhis_premium.png" alt="Gendhis AI" class="tech-img" />
+              <div class="hotspot" style="top: 50%; left: 50%">
+                <div class="hotspot-tip">Natural Language Processing (NLP)</div>
+              </div>
+              <div class="hotspot" style="top: 25%; left: 65%">
+                <div class="hotspot-tip">Push Notification Critical Alert</div>
+              </div>
+            </div>
+          </div>
         </div>
+  </div>
+
+        <div class="tech-tags reveal reveal-delay-3">
+          <div class="tag">
+            <i
+              data-lucide="check"
+              width="14"
+              height="14"
+              style="color: var(--forest)"
+            ></i>
+            Sensor Gerak & Suhu
+          </div>
+          <div class="tag">
+            <i
+              data-lucide="check"
+              width="14"
+              height="14"
+              style="color: var(--forest)"
+            ></i>
+            Transmisi Data Real-time
+          </div>
+          <div class="tag">
+            <i
+              data-lucide="check"
+              width="14"
+              height="14"
+              style="color: var(--forest)"
+            ></i>
+            Machine Learning
+          </div>
+          <div class="tag">
+            <i
+              data-lucide="check"
+              width="14"
+              height="14"
+              style="color: var(--forest)"
+            ></i>
+            AI Assistant
+          </div>
+          <div class="tag">
+            <i
+              data-lucide="check"
+              width="14"
+              height="14"
+              style="color: var(--forest)"
+            ></i>
+            Dashboard Web
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 7. GENDHIS SECTION -->
     <section id="produk">
-        <div class="container gendhis-grid">
-            <div class="gendhis-text reveal">
-                <span class="section-label" style="color: var(--gold);">ASISTEN CERDAS</span>
-                <h2 class="serif" style="color: var(--white);">Gendhis</h2>
-                <p>Asisten yang membantu Anda memahami kondisi ternak dan mengambil keputusan dengan lebih mudah. Cukup tanya dalam bahasa sehari-hari — Gendhis yang akan menganalisa dan menjawab.</p>
-                <a href="#" class="btn btn-gold interactive">Coba Gendhis Sekarang <i data-lucide="arrow-up-right" width="16" height="16"></i></a>
-            </div>
-            <div class="chat-mockup reveal reveal-delay-2">
-                <div class="chat-header">
-                    <div class="chat-avatar"><i data-lucide="bot" width="20" height="20"></i></div>
-                    <div>
-                        <h4 style="font-family: var(--font-sans); color: white; font-weight: 500; font-size: 1rem; line-height: 1.2;">Gendhis</h4>
-                        <span style="font-size: 0.75rem; color: var(--sage-light); display: flex; align-items: center; gap: 6px; margin-top: 2px;">
-                            <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;"></span> Siap membantu
-                        </span>
-                    </div>
-                </div>
-                <div class="chat-body">
-                    <div class="bubble bubble-user">Kapan waktu terbaik untuk IB pada SAPI_A03?</div>
-                    <div class="bubble bubble-bot">Berdasarkan data aktivitas 48 jam terakhir, SAPI_A03 menunjukkan tanda birahi sejak pagi ini. Disarankan IB dalam 1–2 hari ke depan. 🌿</div>
-                    <div class="bubble bubble-user">Langkah selanjutnya apa?</div>
-                    <div class="bubble bubble-bot">Hubungi inseminator dan catat waktu IB. Saya akan ingatkan untuk cek kebuntingan secara otomatis.</div>
-                </div>
-                <div class="chat-input">
-                    <span style="flex:1; color: rgba(255,255,255,0.5); font-size: 0.9rem;">Tanya Gendhis sesuatu...</span>
-                    <div style="width: 34px; height: 34px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--forest);">
-                        <i data-lucide="send" width="16" height="16"></i>
-                    </div>
-                </div>
-            </div>
+      <div class="container gendhis-grid">
+        <div class="gendhis-text reveal">
+          <span class="section-label" style="color: var(--gold)"
+            >ASISTEN CERDAS</span
+          >
+          <h2 class="serif" style="color: var(--white)">Gendhis</h2>
+          <p>
+            Asisten yang membantu Anda memahami kondisi ternak dan mengambil
+            keputusan dengan lebih mudah. Cukup tanya dalam bahasa sehari-hari —
+            Gendhis yang akan menganalisa dan menjawab.
+          </p>
+          <a href="#" class="btn btn-gold interactive"
+            >Coba Gendhis Sekarang
+            <i data-lucide="arrow-up-right" width="16" height="16"></i
+          ></a>
         </div>
+        <div class="chat-mockup reveal reveal-delay-2">
+          <div class="chat-header">
+            <div class="chat-avatar">
+              <i data-lucide="bot" width="20" height="20"></i>
+            </div>
+            <div>
+              <h4
+                style="
+                  font-family: var(--font-sans);
+                  color: white;
+                  font-weight: 500;
+                  font-size: 1rem;
+                  line-height: 1.2;
+                "
+              >
+                Gendhis
+              </h4>
+              <span
+                style="
+                  font-size: 0.75rem;
+                  color: var(--sage-light);
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                  margin-top: 2px;
+                "
+              >
+                <span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    background: #22c55e;
+                    border-radius: 50%;
+                  "
+                ></span>
+                Siap membantu
+              </span>
+            </div>
+          </div>
+          <div class="chat-body">
+            <div class="bubble bubble-user">
+              Kapan waktu terbaik untuk IB pada SAPI_A03?
+            </div>
+            <div class="bubble bubble-bot">
+              Berdasarkan data aktivitas 48 jam terakhir, SAPI_A03 menunjukkan
+              tanda birahi sejak pagi ini. Disarankan IB dalam 1–2 hari ke
+              depan. 🌿
+            </div>
+            <div class="bubble bubble-user">Langkah selanjutnya apa?</div>
+            <div class="bubble bubble-bot">
+              Hubungi inseminator dan catat waktu IB. Saya akan ingatkan untuk
+              cek kebuntingan secara otomatis.
+            </div>
+          </div>
+          <div class="chat-input">
+            <span
+              style="
+                flex: 1;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.9rem;
+              "
+              >Tanya Gendhis sesuatu...</span
+            >
+            <div
+              style="
+                width: 34px;
+                height: 34px;
+                background: var(--gold);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--forest);
+              "
+            >
+              <i data-lucide="send" width="16" height="16"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 8. CERITA SECTION -->
     <section id="cerita">
-        <div class="watermark">UMBARA</div>
-        <div class="container cerita-grid">
-            <div class="reveal">
-                <span class="section-label">CERITA KAMI</span>
-                <h2 class="serif" style="font-size: 3rem; color: var(--forest); margin-bottom: 2.5rem;">Kenapa Umbara Ada</h2>
-                <div class="cerita-quote">
-                    "Umbara lahir dari keresahan sederhana: terlalu banyak keputusan penting di peternakan yang dibuat berdasarkan perkiraan."
-                </div>
-                <p style="margin-bottom: 1.5rem;">Kami percaya peternak berhak punya akses ke informasi yang membantu mereka memutuskan dengan lebih tepat. Tanpa harus jadi ahli teknologi. Tanpa harus keluar biaya besar.</p>
-                <p>Karena pertanian Indonesia layak dapat yang lebih baik. Masih banyak yang perlu dibangun, tapi kami mulai dari sini.</p>
-            </div>
-            <div class="reveal reveal-delay-2">
-                <span class="section-label">NILAI KAMI</span>
-                <h2 class="serif" style="font-size: 3rem; color: var(--forest); margin-bottom: 2.5rem;">Apa yang kami pegang</h2>
-                <div class="value-grid">
-                    <div class="value-card interactive">
-                        <h4><i data-lucide="leaf" width="18" height="18" style="color: var(--sage);"></i> Kesederhanaan</h4>
-                        <p>Teknologi harus mudah dipahami siapa saja.</p>
-                    </div>
-                    <div class="value-card interactive">
-                        <h4><i data-lucide="target" width="18" height="18" style="color: var(--sage);"></i> Kegunaan</h4>
-                        <p>Fitur dibangun untuk masalah nyata.</p>
-                    </div>
-                    <div class="value-card interactive">
-                        <h4><i data-lucide="lightbulb" width="18" height="18" style="color: var(--sage);"></i> Kejelasan</h4>
-                        <p>Membantu melihat yang tidak jelas.</p>
-                    </div>
-                    <div class="value-card interactive">
-                        <h4><i data-lucide="heart" width="18" height="18" style="color: var(--sage);"></i> Empati</h4>
-                        <p>Dibangun atas keseharian pengguna.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="watermark">UMBARA</div>
+      <div class="container cerita-grid">
+        <div class="reveal">
+          <span class="section-label">CERITA KAMI</span>
+          <h2
+            class="serif"
+            style="font-size: 3rem; color: var(--forest); margin-bottom: 2.5rem"
+          >
+            Kenapa Umbara Ada
+          </h2>
+          <div class="cerita-quote">
+            "Umbara lahir dari keresahan sederhana: terlalu banyak keputusan
+            penting di peternakan yang dibuat berdasarkan perkiraan."
+          </div>
+          <p style="margin-bottom: 1.5rem">
+            Kami percaya peternak berhak punya akses ke informasi yang membantu
+            mereka memutuskan dengan lebih tepat. Tanpa harus jadi ahli
+            teknologi. Tanpa harus keluar biaya besar.
+          </p>
+          <p>
+            Karena pertanian Indonesia layak dapat yang lebih baik. Masih banyak
+            yang perlu dibangun, tapi kami mulai dari sini.
+          </p>
         </div>
+        <div class="reveal reveal-delay-2">
+          <span class="section-label">NILAI KAMI</span>
+          <h2
+            class="serif"
+            style="font-size: 3rem; color: var(--forest); margin-bottom: 2.5rem"
+          >
+            Apa yang kami pegang
+          </h2>
+          <div class="value-grid">
+            <div class="value-card interactive">
+              <h4>
+                <i
+                  data-lucide="leaf"
+                  width="18"
+                  height="18"
+                  style="color: var(--sage)"
+                ></i>
+                Kesederhanaan
+              </h4>
+              <p>Teknologi harus mudah dipahami siapa saja.</p>
+            </div>
+            <div class="value-card interactive">
+              <h4>
+                <i
+                  data-lucide="target"
+                  width="18"
+                  height="18"
+                  style="color: var(--sage)"
+                ></i>
+                Kegunaan
+              </h4>
+              <p>Fitur dibangun untuk masalah nyata.</p>
+            </div>
+            <div class="value-card interactive">
+              <h4>
+                <i
+                  data-lucide="lightbulb"
+                  width="18"
+                  height="18"
+                  style="color: var(--sage)"
+                ></i>
+                Kejelasan
+              </h4>
+              <p>Membantu melihat yang tidak jelas.</p>
+            </div>
+            <div class="value-card interactive">
+              <h4>
+                <i
+                  data-lucide="heart"
+                  width="18"
+                  height="18"
+                  style="color: var(--sage)"
+                ></i>
+                Empati
+              </h4>
+              <p>Dibangun atas keseharian pengguna.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 9. TIM SECTION -->
     <section id="tim">
-        <div class="container">
-            <div class="reveal title-margin" style="text-align: center;">
-                <span class="section-label">TIM KAMI</span>
-                <h2 class="serif" style="font-size: 3rem; color: var(--forest);">Dibangun dari pengalaman nyata</h2>
-            </div>
-            
-            <div class="tim-grid">
-                <div class="team-card reveal reveal-delay-1 interactive" onclick="toggleTeam(this)">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" class="avatar" alt="Pendiri">
-                    <h3 class="serif">Pendiri</h3>
-                    <div class="team-role">Teknologi & Visi</div>
-                    <div class="team-bio">Tumbuh dekat dengan dunia peternakan. Membangun Umbara bukan dari tren, tapi dari lapangan.</div>
-                    <button class="expand-trigger">Baca ceritanya <i data-lucide="chevron-down" width="16" height="16"></i></button>
-                    <div class="expanded-area">
-                        <div class="expanded-text">Dari kecil akrab dengan dunia peternakan. Umbara dibangun bukan untuk mengejar tren, tapi untuk benar-benar membantu masalah di lapangan.</div>
-                        <div class="social-icons">
-                            <a href="#" class="interactive"><i data-lucide="linkedin" width="16" height="16"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-card reveal reveal-delay-2 interactive" onclick="toggleTeam(this)">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop" class="avatar" alt="Desain">
-                    <h3 class="serif">Produk & Desain</h3>
-                    <div class="team-role">Pengalaman Pengguna</div>
-                    <div class="team-bio">Percaya bahwa teknologi terbaik adalah yang tidak terasa seperti teknologi — dirancang untuk manusia.</div>
-                    <button class="expand-trigger">Baca ceritanya <i data-lucide="chevron-down" width="16" height="16"></i></button>
-                    <div class="expanded-area">
-                        <div class="expanded-text">Tugas kami memastikan Umbara terasa mudah dan menyenangkan digunakan, bahkan oleh mereka yang baru pertama kali memegang smartphone.</div>
-                        <div class="social-icons">
-                            <a href="#" class="interactive"><i data-lucide="linkedin" width="16" height="16"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-card reveal reveal-delay-3 interactive" onclick="toggleTeam(this)">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop" class="avatar" alt="Riset">
-                    <h3 class="serif">Lapangan & Riset</h3>
-                    <div class="team-role">Pertumbuhan & Komunitas</div>
-                    <div class="team-bio">Lebih banyak menghabiskan waktu di lapangan daripada di depan layar. Mendengarkan sebelum membangun.</div>
-                    <button class="expand-trigger">Baca ceritanya <i data-lucide="chevron-down" width="16" height="16"></i></button>
-                    <div class="expanded-area">
-                        <div class="expanded-text">Kami percaya bahwa solusi terbaik lahir dari percakapan nyata di lapangan — bukan dari sekadar asumsi di balik meja kerja.</div>
-                        <div class="social-icons">
-                            <a href="#" class="interactive"><i data-lucide="instagram" width="16" height="16"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="reveal title-margin" style="text-align: center">
+          <span class="section-label">TIM KAMI</span>
+          <h2 class="serif" style="font-size: 3rem; color: var(--forest)">
+            Dibangun dari pengalaman nyata
+          </h2>
         </div>
+
+        <div class="tim-grid">
+          <div
+            class="team-card reveal reveal-delay-1 interactive"
+            onclick="toggleTeam(this)"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+              class="avatar"
+              alt="Pendiri"
+            />
+            <h3 class="serif">Pendiri</h3>
+            <div class="team-role">Teknologi & Visi</div>
+            <div class="team-bio">
+              Tumbuh dekat dengan dunia peternakan. Membangun Umbara bukan dari
+              tren, tapi dari lapangan.
+            </div>
+            <button class="expand-trigger">
+              Baca ceritanya
+              <i data-lucide="chevron-down" width="16" height="16"></i>
+            </button>
+            <div class="expanded-area">
+              <div class="expanded-text">
+                Dari kecil akrab dengan dunia peternakan. Umbara dibangun bukan
+                untuk mengejar tren, tapi untuk benar-benar membantu masalah di
+                lapangan.
+              </div>
+              <div class="social-icons">
+                <a href="#" class="interactive"
+                  ><i data-lucide="linkedin" width="16" height="16"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="team-card reveal reveal-delay-2 interactive"
+            onclick="toggleTeam(this)"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
+              class="avatar"
+              alt="Desain"
+            />
+            <h3 class="serif">Produk & Desain</h3>
+            <div class="team-role">Pengalaman Pengguna</div>
+            <div class="team-bio">
+              Percaya bahwa teknologi terbaik adalah yang tidak terasa seperti
+              teknologi — dirancang untuk manusia.
+            </div>
+            <button class="expand-trigger">
+              Baca ceritanya
+              <i data-lucide="chevron-down" width="16" height="16"></i>
+            </button>
+            <div class="expanded-area">
+              <div class="expanded-text">
+                Tugas kami memastikan Umbara terasa mudah dan menyenangkan
+                digunakan, bahkan oleh mereka yang baru pertama kali memegang
+                smartphone.
+              </div>
+              <div class="social-icons">
+                <a href="#" class="interactive"
+                  ><i data-lucide="linkedin" width="16" height="16"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="team-card reveal reveal-delay-3 interactive"
+            onclick="toggleTeam(this)"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop"
+              class="avatar"
+              alt="Riset"
+            />
+            <h3 class="serif">Lapangan & Riset</h3>
+            <div class="team-role">Pertumbuhan & Komunitas</div>
+            <div class="team-bio">
+              Lebih banyak menghabiskan waktu di lapangan daripada di depan
+              layar. Mendengarkan sebelum membangun.
+            </div>
+            <button class="expand-trigger">
+              Baca ceritanya
+              <i data-lucide="chevron-down" width="16" height="16"></i>
+            </button>
+            <div class="expanded-area">
+              <div class="expanded-text">
+                Kami percaya bahwa solusi terbaik lahir dari percakapan nyata di
+                lapangan — bukan dari sekadar asumsi di balik meja kerja.
+              </div>
+              <div class="social-icons">
+                <a href="#" class="interactive"
+                  ><i data-lucide="instagram" width="16" height="16"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 10. VISION SECTION -->
     <section id="visi">
-        <div class="container">
-            <div class="reveal title-margin" style="text-align: center;">
-                <span class="section-label">PERJALANAN KAMI</span>
-                <h2 class="serif" style="font-size: 3rem; color: var(--forest); margin-bottom: 1.5rem;">Dimulai dari <i style="color: var(--sage);">satu kandang</i></h2>
-                <p style="font-size: 1.1rem; max-width: 650px; margin: 0 auto;">Setiap perjalanan besar dimulai dari satu langkah. Kami memulai dari Balikpapan — dan kami tidak akan berhenti di sini.</p>
-            </div>
-            
-            <div class="timeline-container reveal reveal-delay-2">
-                <div class="timeline">
-                    <div class="t-item active">
-                        <div class="t-dot"><i data-lucide="map-pin" width="14" height="14" style="color: white;"></i></div>
-                        <div>
-                            <span class="t-badge">Sekarang</span>
-                            <h4>Balikpapan</h4>
-                            <p>Pilot pertama. Lima kandang, satu awal.</p>
-                        </div>
-                    </div>
-                    <div class="t-item progress">
-                        <div class="t-dot"><i data-lucide="map" width="14" height="14"></i></div>
-                        <div>
-                            <h4>Kalimantan</h4>
-                            <p>Ekspansi regional. Lebih banyak peternak.</p>
-                        </div>
-                    </div>
-                    <div class="t-item">
-                        <div class="t-dot"><i data-lucide="flag" width="14" height="14"></i></div>
-                        <div>
-                            <h4>Indonesia</h4>
-                            <p>Skala nasional. Seluruh sektor pertanian.</p>
-                        </div>
-                    </div>
-                    <div class="t-item">
-                        <div class="t-dot"><i data-lucide="globe-2" width="14" height="14"></i></div>
-                        <div>
-                            <h4>ASEAN</h4>
-                            <p>Pasar regional. Teknologi tanpa batas.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="reveal title-margin" style="text-align: center">
+          <span class="section-label">PERJALANAN KAMI</span>
+          <h2
+            class="serif"
+            style="font-size: 3rem; color: var(--forest); margin-bottom: 1.5rem"
+          >
+            Dimulai dari <i style="color: var(--sage)">satu kandang</i>
+          </h2>
+          <p style="font-size: 1.1rem; max-width: 650px; margin: 0 auto">
+            Setiap perjalanan besar dimulai dari satu langkah. Kami memulai dari
+            Balikpapan — dan kami tidak akan berhenti di sini.
+          </p>
         </div>
+
+        <div class="timeline-container reveal reveal-delay-2">
+          <div class="timeline">
+            <div class="t-item active">
+              <div class="t-dot">
+                <i
+                  data-lucide="map-pin"
+                  width="14"
+                  height="14"
+                  style="color: white"
+                ></i>
+              </div>
+              <div>
+                <span class="t-badge">Sekarang</span>
+                <h4>Balikpapan</h4>
+                <p>Pilot pertama. Lima kandang, satu awal.</p>
+              </div>
+            </div>
+            <div class="t-item progress">
+              <div class="t-dot">
+                <i data-lucide="map" width="14" height="14"></i>
+              </div>
+              <div>
+                <h4>Kalimantan</h4>
+                <p>Ekspansi regional. Lebih banyak peternak.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-dot">
+                <i data-lucide="flag" width="14" height="14"></i>
+              </div>
+              <div>
+                <h4>Indonesia</h4>
+                <p>Skala nasional. Seluruh sektor pertanian.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-dot">
+                <i data-lucide="globe-2" width="14" height="14"></i>
+              </div>
+              <div>
+                <h4>ASEAN</h4>
+                <p>Pasar regional. Teknologi tanpa batas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 11. PILOT CTA SECTION -->
     <section id="pilot">
-        <div class="container pilot-grid">
-            <div class="reveal">
-                <span class="section-label" style="color: var(--gold);">BERGABUNG</span>
-                <h2 class="pilot-title serif">Jadilah bagian dari yang pertama.</h2>
-                <p class="pilot-desc">Kami sedang memilih farm pertama untuk program pilot Umbara. Ini bukan sekadar uji coba — ini kesempatan untuk ikut membentuk teknologi peternak Indonesia.</p>
-                <div style="display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;">
-                    <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-wa interactive">
-                        <i data-lucide="message-circle" width="18" height="18"></i> Hubungi via WhatsApp
-                    </a>
-                    <a href="#produk" class="btn btn-ghost interactive">Pelajari Gendhis dulu</a>
-                </div>
-            </div>
-            <div class="pilot-card reveal reveal-delay-2">
-                <h3 class="serif" style="font-size: 1.8rem; color: var(--gold); margin-bottom: 1rem;">Program Pilot Umbara</h3>
-                <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem; font-size: 0.95rem;">Terbuka untuk peternak sapi di Indonesia yang ingin merasakan langsung manfaat teknologi monitoring cerdas.</p>
-                <ul class="pilot-list">
-                    <li><i data-lucide="check" width="18" height="18" style="color: var(--gold); flex-shrink: 0;"></i> Akses penuh ke sistem Umbara</li>
-                    <li><i data-lucide="check" width="18" height="18" style="color: var(--gold); flex-shrink: 0;"></i> Kalung sensor untuk ternak Anda</li>
-                    <li><i data-lucide="check" width="18" height="18" style="color: var(--gold); flex-shrink: 0;"></i> Dukungan tim selama pilot</li>
-                </ul>
-            </div>
+      <div class="container pilot-grid">
+        <div class="reveal">
+          <span class="section-label" style="color: var(--gold)"
+            >BERGABUNG</span
+          >
+          <h2 class="pilot-title serif">Jadilah bagian dari yang pertama.</h2>
+          <p class="pilot-desc">
+            Kami sedang memilih farm pertama untuk program pilot Umbara. Ini
+            bukan sekadar uji coba — ini kesempatan untuk ikut membentuk
+            teknologi peternak Indonesia.
+          </p>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              align-items: flex-start;
+            "
+          >
+            <a
+              href="https://wa.me/6285173140965"
+              target="_blank"
+              class="btn btn-wa interactive"
+            >
+              <i data-lucide="message-circle" width="18" height="18"></i>
+              Hubungi via WhatsApp
+            </a>
+            <a href="#produk" class="btn btn-ghost interactive"
+              >Pelajari Gendhis dulu</a
+            >
+          </div>
         </div>
+        <div class="pilot-card reveal reveal-delay-2">
+          <h3
+            class="serif"
+            style="font-size: 1.8rem; color: var(--gold); margin-bottom: 1rem"
+          >
+            Program Pilot Umbara
+          </h3>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.8);
+              margin-bottom: 1.5rem;
+              font-size: 0.95rem;
+            "
+          >
+            Terbuka untuk peternak sapi di Indonesia yang ingin merasakan
+            langsung manfaat teknologi monitoring cerdas.
+          </p>
+          <ul class="pilot-list">
+            <li>
+              <i
+                data-lucide="check"
+                width="18"
+                height="18"
+                style="color: var(--gold); flex-shrink: 0"
+              ></i>
+              Akses penuh ke sistem Umbara
+            </li>
+            <li>
+              <i
+                data-lucide="check"
+                width="18"
+                height="18"
+                style="color: var(--gold); flex-shrink: 0"
+              ></i>
+              Kalung sensor untuk ternak Anda
+            </li>
+            <li>
+              <i
+                data-lucide="check"
+                width="18"
+                height="18"
+                style="color: var(--gold); flex-shrink: 0"
+              ></i>
+              Dukungan tim selama pilot
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- 12. FOOTER -->
     <footer>
-        <div class="container footer-content">
-            <a href="#beranda" class="logo interactive" style="color: var(--white);">
-                <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--white);">
-                    <path d="M6 10v6a10 10 0 0 0 20 0v-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                    <path d="M16 4v14M11 9l5-5 5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                UMBARA
-            </a>
-            <div class="f-nav">
-                <a href="#cerita" class="interactive">Cerita</a>
-                <a href="#solusi" class="interactive">Solusi</a>
-                <a href="#produk" class="interactive">Gendhis</a>
-                <a href="#visi" class="interactive">Visi</a>
-            </div>
-            <div class="f-copy">© 2026 Umbara · Untuk petani Indonesia <i data-lucide="leaf" width="12" height="12" style="display: inline-block; vertical-align: middle;"></i></div>
+      <div class="container footer-content">
+        <a href="#beranda" class="logo interactive" style="color: var(--white)">
+          <svg
+            class="logo-mark"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="color: var(--white)"
+          >
+            <path
+              d="M6 10v6a10 10 0 0 0 20 0v-6"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M16 4v14M11 9l5-5 5 5"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          UMBARA
+        </a>
+        <div class="f-nav">
+          <a href="#cerita" class="interactive">Cerita</a>
+          <a href="#solusi" class="interactive">Solusi</a>
+          <a href="#produk" class="interactive">Gendhis</a>
+          <a href="#visi" class="interactive">Visi</a>
         </div>
+        <div class="f-copy">
+          © 2026 Umbara · Untuk petani Indonesia
+          <i
+            data-lucide="leaf"
+            width="12"
+            height="12"
+            style="display: inline-block; vertical-align: middle"
+          ></i>
+        </div>
+      </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // 1. Initialize Lucide Icons
-        lucide.createIcons();
+      // 1. Initialize Lucide Icons
+      lucide.createIcons();
 
-        // 2. Custom Cursor Logic (Desktop only)
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorRing = document.querySelector('.cursor-ring');
-        
-        if (window.matchMedia("(min-width: 1024px)").matches && cursorDot && cursorRing) {
-            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-            let ringX = window.innerWidth / 2, ringY = window.innerHeight / 2;
+      // 2. Custom Cursor Logic (Desktop only)
+      const cursorDot = document.querySelector(".cursor-dot");
+      const cursorRing = document.querySelector(".cursor-ring");
 
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                cursorDot.style.left = `${mouseX}px`;
-                cursorDot.style.top = `${mouseY}px`;
-            });
+      if (
+        window.matchMedia("(min-width: 1024px)").matches &&
+        cursorDot &&
+        cursorRing
+      ) {
+        let mouseX = window.innerWidth / 2,
+          mouseY = window.innerHeight / 2;
+        let ringX = window.innerWidth / 2,
+          ringY = window.innerHeight / 2;
 
-            function animateCursor() {
-                ringX += (mouseX - ringX) * 0.15;
-                ringY += (mouseY - ringY) * 0.15;
-                cursorRing.style.left = `${ringX}px`;
-                cursorRing.style.top = `${ringY}px`;
-                requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
-
-            const interactives = document.querySelectorAll('a, button, .interactive, .problem-card, .solution-card, .value-card, .team-card');
-            interactives.forEach(el => {
-                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-            });
-
-            document.addEventListener('mouseout', () => { cursorDot.style.opacity = 0; cursorRing.style.opacity = 0; });
-            document.addEventListener('mouseover', () => { cursorDot.style.opacity = 1; cursorRing.style.opacity = 1; });
-        }
-
-        // 3. Navbar & Mobile Menu Logic
-        const navbar = document.getElementById('navbar');
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const navLinks = document.getElementById('nav-links');
-        const menuIcon = document.getElementById('menu-icon');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        
-        let menuOpen = false;
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 40) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          cursorDot.style.left = `${mouseX}px`;
+          cursorDot.style.top = `${mouseY}px`;
         });
 
-        mobileMenuBtn.addEventListener('click', () => {
-            menuOpen = !menuOpen;
-            if (menuOpen) {
-                navLinks.classList.add('active');
-                menuIcon.setAttribute('data-lucide', 'x');
-                document.body.style.overflow = 'hidden'; // prevent scrolling
-            } else {
-                navLinks.classList.remove('active');
-                menuIcon.setAttribute('data-lucide', 'menu');
-                document.body.style.overflow = 'auto';
-            }
-            lucide.createIcons(); // re-render icon
+        function animateCursor() {
+          ringX += (mouseX - ringX) * 0.15;
+          ringY += (mouseY - ringY) * 0.15;
+          cursorRing.style.left = `${ringX}px`;
+          cursorRing.style.top = `${ringY}px`;
+          requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        const interactives = document.querySelectorAll(
+          "a, button, .interactive, .problem-card, .solution-card, .value-card, .team-card",
+        );
+        interactives.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            document.body.classList.add("cursor-hover"),
+          );
+          el.addEventListener("mouseleave", () =>
+            document.body.classList.remove("cursor-hover"),
+          );
         });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    menuOpen = false;
-                    navLinks.classList.remove('active');
-                    menuIcon.setAttribute('data-lucide', 'menu');
-                    document.body.style.overflow = 'auto';
-                    lucide.createIcons();
-                }
-            });
+        document.addEventListener("mouseout", () => {
+          cursorDot.style.opacity = 0;
+          cursorRing.style.opacity = 0;
         });
+        document.addEventListener("mouseover", () => {
+          cursorDot.style.opacity = 1;
+          cursorRing.style.opacity = 1;
+        });
+      }
 
-        // 4. Technology Slider Logic
-        function switchTech(index) {
-            const tabs = document.querySelectorAll('.tech-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            tabs[index].classList.add('active');
+      // 3. Navbar & Mobile Menu Logic
+      const navbar = document.getElementById("navbar");
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const navLinks = document.getElementById("nav-links");
+      const menuIcon = document.getElementById("menu-icon");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
 
-            const images = document.querySelectorAll('.tech-img');
-            images.forEach(img => img.classList.remove('active'));
-            document.getElementById(`tech-img-${index}`).classList.add('active');
+      let menuOpen = false;
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 40) navbar.classList.add("scrolled");
+        else navbar.classList.remove("scrolled");
+      });
+
+      mobileMenuBtn.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        if (menuOpen) {
+          navLinks.classList.add("active");
+          menuIcon.setAttribute("data-lucide", "x");
+          document.body.style.overflow = "hidden"; // prevent scrolling
+        } else {
+          navLinks.classList.remove("active");
+          menuIcon.setAttribute("data-lucide", "menu");
+          document.body.style.overflow = "auto";
         }
+        lucide.createIcons(); // re-render icon
+      });
 
-        // 5. Team Card Expand Logic
-        function toggleTeam(cardElement) {
-            const isExpanded = cardElement.classList.contains('expanded');
-            document.querySelectorAll('.team-card').forEach(c => c.classList.remove('expanded'));
-            if (!isExpanded) cardElement.classList.add('expanded');
-        }
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            menuOpen = false;
+            navLinks.classList.remove("active");
+            menuIcon.setAttribute("data-lucide", "menu");
+            document.body.style.overflow = "auto";
+            lucide.createIcons();
+          }
+        });
+      });
 
-        // 6. Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+      // 4. Technology Slider Logic
+      function switchTech(index) {
+        const tabs = document.querySelectorAll(".tech-tab");
+        tabs.forEach((tab) => tab.classList.remove("active"));
+        tabs[index].classList.add("active");
 
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, revealOptions);
+        const wrappers = document.querySelectorAll(".tech-img-wrapper");
+        wrappers.forEach((w) => w.classList.remove("active"));
+        document.getElementById(`tech-img-${index}`).classList.add("active");
+      }
 
-        revealElements.forEach(el => revealObserver.observe(el));
+      // 5. Team Card Expand Logic
+      function toggleTeam(cardElement) {
+        const isExpanded = cardElement.classList.contains("expanded");
+        document
+          .querySelectorAll(".team-card")
+          .forEach((c) => c.classList.remove("expanded"));
+        if (!isExpanded) cardElement.classList.add("expanded");
+      }
+
+      // 6. Scroll Reveal Animation
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, revealOptions);
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+
+      // 7. Hero Video Slider Logic
+      let heroCurrentIndex = 0;
+      const heroSlides = document.querySelectorAll(".slider-item");
+      const heroDots = document.querySelectorAll(".nav-dot");
+
+      function updateSlider() {
+        heroSlides.forEach((slide, index) => {
+          slide.classList.remove("active", "prev", "next");
+          heroDots[index].classList.remove("active");
+
+          if (index === heroCurrentIndex) {
+            slide.classList.add("active");
+            heroDots[index].classList.add("active");
+          } else if (
+            index ===
+            (heroCurrentIndex - 1 + heroSlides.length) % heroSlides.length
+          ) {
+            slide.classList.add("prev");
+          } else if (index === (heroCurrentIndex + 1) % heroSlides.length) {
+            slide.classList.add("next");
+          }
+        });
+      }
+
+      function jumpToSlide(index) {
+        heroCurrentIndex = index;
+        updateSlider();
+        resetHeroInterval();
+      }
+
+      let heroInterval = setInterval(() => {
+        heroCurrentIndex = (heroCurrentIndex + 1) % heroSlides.length;
+        updateSlider();
+      }, 5000);
+
+      function resetHeroInterval() {
+        clearInterval(heroInterval);
+        heroInterval = setInterval(() => {
+          heroCurrentIndex = (heroCurrentIndex + 1) % heroSlides.length;
+          updateSlider();
+        }, 5000);
+      }
+
+      // Initialize hero slider if elements exist
+      if (heroSlides.length > 0) {
+        updateSlider();
+      }
     </script>
-</body>
+  </body>
 </html>
